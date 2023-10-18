@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "name": "proprothese",
+  "scripts": {
+    "dev": "concurrently \"npm run start:backend\"",
+    "start:backend": "cd backend && npm run develop"
+  },
+  "devDependencies": {
+      "concurrently": "^8.2.1"
+  }
+} 
