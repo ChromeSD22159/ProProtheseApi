@@ -362,6 +362,109 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiChangeLogItemChangeLogItem extends Schema.CollectionType {
+  collectionName: 'change_log_items';
+  info: {
+    singularName: 'change-log-item';
+    pluralName: 'change-log-items';
+    displayName: 'ChangeLogItem';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    Release: Attribute.Date &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    Version: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    Features: Attribute.DynamicZone<['feature.feature']> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::change-log-item.change-log-item',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::change-log-item.change-log-item',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::change-log-item.change-log-item',
+      'oneToMany',
+      'api::change-log-item.change-log-item'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiFeatureFeature extends Schema.CollectionType {
+  collectionName: 'features';
+  info: {
+    singularName: 'feature';
+    pluralName: 'features';
+    displayName: 'Feature';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    Feature: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::feature.feature',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::feature.feature',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::feature.feature',
+      'oneToMany',
+      'api::feature.feature'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -677,109 +780,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface ApiChangeLogItemChangeLogItem extends Schema.CollectionType {
-  collectionName: 'change_log_items';
-  info: {
-    singularName: 'change-log-item';
-    pluralName: 'change-log-items';
-    displayName: 'ChangeLogItem';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    Release: Attribute.Date &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    Version: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    Features: Attribute.DynamicZone<['feature.feature']> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::change-log-item.change-log-item',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::change-log-item.change-log-item',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    localizations: Attribute.Relation<
-      'api::change-log-item.change-log-item',
-      'oneToMany',
-      'api::change-log-item.change-log-item'
-    >;
-    locale: Attribute.String;
-  };
-}
-
-export interface ApiFeatureFeature extends Schema.CollectionType {
-  collectionName: 'features';
-  info: {
-    singularName: 'feature';
-    pluralName: 'features';
-    displayName: 'Feature';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    Feature: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::feature.feature',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::feature.feature',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    localizations: Attribute.Relation<
-      'api::feature.feature',
-      'oneToMany',
-      'api::feature.feature'
-    >;
-    locale: Attribute.String;
-  };
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -790,14 +790,14 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
+      'api::change-log-item.change-log-item': ApiChangeLogItemChangeLogItem;
+      'api::feature.feature': ApiFeatureFeature;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'api::change-log-item.change-log-item': ApiChangeLogItemChangeLogItem;
-      'api::feature.feature': ApiFeatureFeature;
     }
   }
 }
