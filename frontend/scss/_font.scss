@@ -1,0 +1,41 @@
+$roboto: "Roboto", sans-serif;
+$OpenSans: "Open Sans", sans-serif;
+
+// Roboto
+@font-face {
+    font-family: $roboto;
+    src: url("@/assets/font/Roboto/Roboto-Bold.ttf");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: $roboto;
+    src: url("@/assets/font/Roboto/Roboto-Regular.ttf");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: $roboto;
+    src: url("@/assets/font/Roboto/Roboto-Light.ttf");
+    font-weight: 300;
+}
+
+
+// Roboto
+@font-face {
+    font-family: $roboto;
+    src: url("@/assets/font/Open_Sans/OpenSans-Bold.ttf");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: $roboto;
+    src: url("@/assets/font/Open_Sans/OpenSans-Regular.ttf");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: $roboto;
+    src: url("@/assets/font/Open_Sans/OpenSans-Light.ttf");
+    font-weight: 300;
+}

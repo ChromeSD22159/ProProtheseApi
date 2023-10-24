@@ -1,0 +1,33 @@
+@import "font";
+
+* {
+    box-sizing: border-box;
+}
+
+body,
+html {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $prime;
+    color: $ciBlue;
+    font-family: $roboto;
+    font-family: $OpenSans;
+}
+
+p {
+    color: $white;
+    line-height: 1.65em;
+    word-wrap: break-word;
+}
+
+h1 {
+    font-size: 1.9rem;
+    line-height: 1.4em;
+}
+
+

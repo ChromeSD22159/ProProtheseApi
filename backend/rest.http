@@ -1,0 +1,9 @@
+###
+GET http://localhost:1337/api/apps?populate=*
+
+###
+GET http://localhost:1337/api/apps/1?populate=*
+
+###
+GET http://localhost:1337/api/change-logs?populate=*?locale=en
+
