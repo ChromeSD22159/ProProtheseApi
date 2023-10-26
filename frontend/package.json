@@ -11,12 +11,19 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "@nuxtjs/apollo": "^5.0.0-alpha.7",
+    "@nuxtjs/strapi": "^1.9.3",
+    "@nuxtjs/tailwindcss": "^6.8.0",
+    "@rollup/plugin-graphql": "^2.0.4",
     "nuxt": "^3.8.0",
     "sass": "^1.69.4",
     "vue": "^3.3.6",
     "vue-router": "^4.2.5"
   },
   "dependencies": {
-    "@heroicons/vue": "^2.0.18"
+    "@heroicons/vue": "^2.0.18",
+    "axios": "^1.5.1",
+    "nuxt-graphql-client": "^0.2.30",
+    "vue-axios": "^3.5.2"
   }
 }

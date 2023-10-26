@@ -28,7 +28,7 @@
     "features": {
       "type": "component",
       "repeatable": true,
-      "component": "feature.feature1",
+      "component": "shared.feature1",
       "pluginOptions": {
         "i18n": {
           "localized": true

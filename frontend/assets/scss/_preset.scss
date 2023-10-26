@@ -19,6 +19,11 @@ html {
     font-family: $OpenSans;
 }
 
+#__nuxt {
+    width: 100%;
+    height: 100%;
+}
+
 p {
     color: $white;
     line-height: 1.65em;

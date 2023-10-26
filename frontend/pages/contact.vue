@@ -1,5 +1,5 @@
 <template>
-    <div class="page">
+    <div class="page absolute ease-in-out duration-300 shadow-lg shadow-transparent">
         <div class="wrapper">
           <div>
             <h1>Neues Projekt starten</h1>

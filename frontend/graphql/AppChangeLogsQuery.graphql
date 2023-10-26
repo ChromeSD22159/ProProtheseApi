@@ -1,0 +1,26 @@
+query GetCountries($code: String!) {
+  countries(filter: { code: { eq: $code } } ) {
+    awsRegion
+	  capital
+    code
+    continent {
+      name
+    }
+    currencies
+    currency
+    emoji
+    emojiU
+    languages {
+      name
+    }
+    native
+    phone
+    phones
+    states {
+      code
+    }
+    subdivisions {
+      emoji
+    }
+  }
+}

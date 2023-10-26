@@ -4,7 +4,8 @@
   "info": {
     "singularName": "index",
     "pluralName": "indices",
-    "displayName": "Index"
+    "displayName": "Index",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true

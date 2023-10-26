@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_global_navigation_panels",
+  "info": {
+    "displayName": "Navigation Panel"
+  },
+  "options": {},
+  "attributes": {
+    "link": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.link"
+    },
+    "sections": {
+      "type": "component",
+      "repeatable": true,
+      "component": "global.navigation-section"
+    },
+    "links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.link"
+    }
+  }
+}

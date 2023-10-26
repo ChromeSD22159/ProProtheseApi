@@ -7,7 +7,7 @@
   },
   "options": {},
   "attributes": {
-    "Name": {
+    "name": {
       "type": "string"
     }
   }

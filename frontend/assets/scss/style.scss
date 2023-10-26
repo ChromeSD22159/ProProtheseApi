@@ -1,0 +1,191 @@
+@import "font";
+@import "preset";
+@import "vars";
+
+.page-enter-active,
+.page-leave-active {
+    transition: all 0.5s;
+}
+
+.page-enter-from {
+    opacity: 0;
+    transform: scale(0);
+}
+
+.page-leave-to {
+    opacity: 0;
+    transform: scale(0);
+}
+
+
+
+
+
+
+
+
+
+
+// AURORA
+
+.wrapper {
+  width: 100px;
+  height: 100px;
+  background: #101317;
+  position: relative;
+  overflow:hidden;
+  border-radius: 40px;
+}
+
+.wrapper div {
+  position: absolute;
+  filter: blur(60px);
+  opacity: 0.8;
+}
+
+
+// Basic blured shapes
+
+.blurred {
+  .one {
+    border-radius: 100%;
+    width: 600px;
+    height: 600px;
+    background-color: #373372;
+    left:-50px;
+    top:-300px;
+    z-index: 3;
+  }
+
+  .two {
+    width: 500px;
+    height: 800px;
+    background-color: #7C336C;
+    bottom:-30px;
+    left:-80px;
+  }
+
+  .three {
+    border-radius: 100%;
+    width: 450px;
+    height: 450px;
+    bottom:-80px;
+    right:-100px;
+    background-color: #B3588A;
+  }
+}
+
+
+// Radial gradient
+
+.radial {
+  .wrapper {
+    background-color: #000000;
+    background-image: 
+      radial-gradient(at top left, #ff00c3, transparent),
+      radial-gradient(at top right, #ff0026, transparent),
+      radial-gradient(at bottom left, #8cff00, transparent);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+}
+
+
+// Blurred image
+
+.image {
+  .imageWrapper {
+    height: 400px;
+    position: relative;
+    overflow:hidden;
+    border-radius: 40px;
+  }
+  .gradientImage {
+    width: 100%;
+  }
+}
+
+.gradientImage.blurredImage {
+  filter: blur(60px);
+}
+
+
+// Blurred animated shapes
+
+.animated {
+  .one {
+    border-radius: 100%;
+    width: 600px;
+    height: 600px;
+    background-color: #fd3333;
+    left:-50px;
+    top:-300px;
+    z-index: 3;
+    animation: flyPlus 12s linear infinite;
+    transform:rotate(0) translate(80px) rotate(0);
+  }
+
+  .two {
+    width: 500px;
+    height: 800px;
+    background-color: #101317;
+    bottom:-30px;
+    left:-80px;
+  }
+
+  .three {
+    border-radius: 100%;
+    width: 450px;
+    height: 450px;
+    bottom:-80px;
+    right:-100px;
+    background-color: #101317;
+    animation: flyPlus 8s linear infinite;
+    transform:rotate(0) translate(100px) rotate(0);
+  }
+}
+
+
+@keyframes fly {
+  100% {
+    transform:rotate(1turn) translate(100px) rotate(-1turn);
+  }
+}
+
+@keyframes flyPlus {
+  100% {
+    transform:rotate(-1turn) translate(100px) rotate(1turn);
+  }
+}
+
+
+.btn {
+  padding: 10px 20px;
+  background: #373372;
+  color: #fff;
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+span {
+  background:#fff;
+  position:fixed;
+  bottom:0;
+  right:0;
+  a {
+    padding: 8px 12px;
+    font-family: Arial;
+    color: #000;
+    display: block;
+  }
+}

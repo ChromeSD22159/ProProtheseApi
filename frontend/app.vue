@@ -1,172 +1,108 @@
 <template>
-  <div class="site">
+  <div class="flex md:flex-row flex-col site ">
     <HeaderNavigation  @activate-ul="activateUl"  />
 
-    <main>
+    <div class="w-full min-h-full relative ">
+      <!--<NuxtPage :class="{ active: showMenu }" class="min-w-full min-h-full" />-->
 
-        <NuxtPage :class="{ active: showMenu }" />
-        <ul :class="{ active: showMenu }">
-          <li v-for="(link, index) in links" :key="index">
-             <div class="background"></div>
-              <NuxtLink :to="link.url" @click="activateUl">
-                  <a>{{ link.text }}</a>
-              </NuxtLink>
-          </li>
-        </ul>
+      <ul :class="{ active: showMenu }" class="navigation min-w-full min-h-full">
+        <li class="absolute ease-in-out duration-300 m-0 p-0 min-h-screen w-full shadow-transparent shadow-none"><NuxtPage class="min-w-full min-h-full" /></li>
+        <li v-for="(link, index) in links" :key="index" class="absolute ease-in-out duration-300 rounded-xl m-0 p-6 min-h-screen w-full shadow-transparent	shadow-none">
+          <div class="background bg-opacity-10 absolute top-0 left-0 min-w-full min-h-full rounded-2xl transition-all duration-500 -p5">
+            <NuxtLink :to="link.url" @click="activateUl" class="relative top-5 left-5 text-white">  {{ link.text }} </NuxtLink>
+          </div>
+        </li>
+      </ul>
 
-    </main>
+    </div>
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
-  @media screen and (max-width: 770px) {
-    .site {
-        flex-direction: column;
-     }
-  }
-  @media screen and (min-width: 770px) {
-    .site {
-       flex-direction: row;
-     }
-  }
+ul.navigation.active {
+    .background {
+      background-color: rgb(255 255 255 / 0.2);
+      backdrop-filter: blur(10px);
+    }
 
-  main {
-    position: relative;
-    min-height: 90vh;
-    min-width: 100vw;
-  }
- 
-  .site {
-    display: flex;
-    min-height: 100vh;
-    width: 100vw;
-   // overflow: hidden;
-    position: relative;
+    background:hover {
+      background-color: rgb(255 255 255 / 0.2);
+      backdrop-filter: blur(10px);
+    }
 }
 
+ul.navigation {
+  li {
+    -ms-transform: TranslateY(0%) TranslateX(0%) scale(1);
+    -webkit-transform: TranslateY(0%) TranslateX(0%) scale(1);
+    -moz-transform: TranslateY(0%) TranslateX(0%) scale(1);
+    -o-transform: TranslateY(0%) TranslateX(0%) scale(1);
+    transform: TranslateY(0%) TranslateX(0%) scale(1);
+    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.0);
+  }
 
-.page {
-      position: absolute;
-      width: 100%;
-      min-height: 100%;
-      display: flex;
-      justify-content: center;
-      align-content: center;
-      align-items: flex-start;
-      padding: 8rem 3rem 3rem 3rem;
-      border-radius:  2rem;
-      background: $prime;
-      transition: all 0.25s;
-      transition-timing-function: ease-in-out;
-      transform: TranslateY(0) scale(1); // TranslateY(0) scale(1)
-      box-shadow: 0px 0px 24px 5px rgba(0,0,0,0.0);
-      z-index: 5;
-      @media only screen and (max-width: 770px) {
-        &.active {
-          transform: TranslateY(25%) scale(0.95); // translate3d(0%,30%,0px) scale(0.95)
-          box-shadow: 0px 0px 74px 10px rgba(0, 0, 0, 0.35);
-        }
-      }
+  li.background {
+    background-color: rgb(255 255 255 / 0);
+    backdrop-filter: blur(10px);
+  }
 
-      @media only screen and (min-width: 770px) {
-        &.active {
-          width: 90%;
-          transform: TranslateY(25%) scale(0.95); // translate3d(0%,30%,0px) scale(0.95)
-          box-shadow: 0px 0px 74px 10px rgba(0, 0, 0, 0.35);
-        }
-      }
+  li:nth-child(1) {
+    z-index: 20;
+  }
+
+  li:nth-child(2) {
+    z-index: 15;
+  }
+
+  li:nth-child(3) {
+    z-index: 5;
+  }
+
+  li:nth-child(4) {
+    z-index: 0;
+  }
+
+  &.active {
+    li:nth-child(1) {
+      -ms-transform: TranslateY(10.5rem) scale(.90);
+      -webkit-transform: TranslateY(10.5rem) scale(.90);
+      -moz-transform: TranslateY(10.5rem) scale(.90);
+      -o-transform: TranslateY(10.5rem) scale(.90);
+      transform: TranslateY(10.5rem) scale(.90); // translate3d(0,45%,0)
+      box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.35);
+      border-radius: 0.75rem;
+      overflow: hidden;
     }
 
-    
-
-    ul {
-        position: relative;
-        width: 100%;
-        min-height: 100%;
-        display: flex;
-        justify-content: center;
-        align-content: center;
-        align-items: center;
-        padding: 2rem;
-        margin: 8rem 3rem 3rem 3rem;
-        margin: 0;
-        padding: 0;
-        opacity: 0;
-        z-index: 2;
-
-        &.active {
-           opacity: 1;
-        }
-
-        li {
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            margin: 0;
-            padding: 1.5rem;
-            min-height: 50vh;
-            width: 100%;
-            background: #ffffff10;
-            box-shadow: 0px 0px 24px 5px rgba(0,0,0,0.35);
-            border-radius: 20px;
-            transition: all 0.4s;
-            transform: TranslateY(50%) scale(0.85); //  translate3d(0%,30%,0px)
-
-            a {
-              text-decoration: none;
-              color: $white;
-            }
-
-            .background {
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background-color: rgb(255 255 255 / 1%);
-                border-radius: 20px;
-                backdrop-filter: blur(5px);
-                z-index: -1;
-                transition: background-color .5s ;
-
-                 &:hover {
-                    background-color:rgb(255 255 255 / 5%);
-                    backdrop-filter: blur(10px);
-                }
-            }
-        }
-
-        @media only screen and (min-width: 770px) {
-          li {
-            width: 90%;
-            transform: TranslateY(0%) scale(0.95); // translate3d(0%,30%,0px) scale(0.95)
-            box-shadow: 0px 0px 74px 10px rgba(0, 0, 0, 0.0);
-          }
-        }
-
-        &.active {
-          li:nth-child(1) {
-            transform: TranslateY(30%) scale(.93); // translate3d(0,45%,0)
-            box-shadow: 0px 0px 24px 5px rgba(0,0,0,0.35);
-            z-index: 10;
-          }
-
-          li:nth-child(2) {
-            transform: TranslateY(15%) scale(0.91); // translate3d(0%,30%,0px)
-            box-shadow: 0px 0px 24px 5px rgba(0,0,0,0.35);
-            z-index: 8;
-          }
-
-          li:nth-child(3) {
-            transform: TranslateY(0%) scale(0.89); // translate3d(0%,15%,0px) 
-            box-shadow: 0px 0px 24px 5px rgba(0,0,0,0.35);
-            z-index: 6;
-          }
-        }
+    li:nth-child(2) {
+      -ms-transform: TranslateY(7.0rem) scale(.87);
+      -webkit-transform: TranslateY(7.0rem) scale(.87);
+      -moz-transform: TranslateY(7.0rem) scale(.87);
+      -o-transform: TranslateY(7.0rem) scale(.87);
+      transform: TranslateY(7.0rem) scale(.87); // translate3d(0,45%,0)
+      box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.35);
     }
- 
+
+    li:nth-child(3) {
+      -ms-transform: TranslateY(3.5rem) scale(.84);
+      -webkit-transform: TranslateY(3.5rem) scale(.84);
+      -moz-transform: TranslateY(3.5rem) scale(.84);
+      -o-transform: TranslateY(3.5rem) scale(.84);
+      transform: TranslateY(3.5rem) scale(.84); // translate3d(0,45%,0)
+      box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.35);
+    }
+
+    li:nth-child(4) {
+      -ms-transform: TranslateY(0px) scale(.81);
+      -webkit-transform: TranslateY(0px) scale(.81);
+      -moz-transform: TranslateY(0px) scale(.81);
+      -o-transform: TranslateY(0px) scale(.81);
+      transform: TranslateY(0px) scale(.81); // translate3d(0,45%,0)
+      box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.35);
+    }
+  }
+}
 </style>
 
 

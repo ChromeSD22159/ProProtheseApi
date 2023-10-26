@@ -694,7 +694,7 @@ export interface ApiAppApp extends Schema.CollectionType {
     };
   };
   attributes: {
-    Name: Attribute.String &
+    name: Attribute.String &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -746,7 +746,7 @@ export interface ApiChangeLogChangeLog extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    features: Attribute.Component<'feature.feature1', true> &
+    features: Attribute.Component<'shared.feature1', true> &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -787,6 +787,7 @@ export interface ApiIndexIndex extends Schema.SingleType {
     singularName: 'index';
     pluralName: 'indices';
     displayName: 'Index';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -804,6 +805,155 @@ export interface ApiIndexIndex extends Schema.SingleType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::index.index',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMainMain extends Schema.SingleType {
+  collectionName: 'mains';
+  info: {
+    singularName: 'main';
+    pluralName: 'mains';
+    displayName: 'main';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    navigation: Attribute.Component<'global.navigation'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::main.main', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::main.main', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPagePage extends Schema.CollectionType {
+  collectionName: 'pages';
+  info: {
+    singularName: 'page';
+    pluralName: 'pages';
+    displayName: 'Page';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    slug: Attribute.UID<'api::page.page', 'titel'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    titel: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    social_medias: Attribute.Relation<
+      'api::page.page',
+      'oneToMany',
+      'api::social-media.social-media'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::page.page', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::page.page', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::page.page',
+      'oneToMany',
+      'api::page.page'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiProProtheseSettingProProtheseSetting
+  extends Schema.SingleType {
+  collectionName: 'pro_prothese_settings';
+  info: {
+    singularName: 'pro-prothese-setting';
+    pluralName: 'pro-prothese-settings';
+    displayName: 'Page-ProProtheseSetting';
+    description: 'ProProtheseSetting';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    settings: Attribute.DynamicZone<['global.settings']> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::pro-prothese-setting.pro-prothese-setting',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::pro-prothese-setting.pro-prothese-setting',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::pro-prothese-setting.pro-prothese-setting',
+      'oneToMany',
+      'api::pro-prothese-setting.pro-prothese-setting'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiSocialMediaSocialMedia extends Schema.CollectionType {
+  collectionName: 'social_medias';
+  info: {
+    singularName: 'social-media';
+    pluralName: 'social-medias';
+    displayName: 'Social Media';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    socialMedia: Attribute.Component<'global.contacts', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::social-media.social-media',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::social-media.social-media',
       'oneToOne',
       'admin::user'
     > &
@@ -830,6 +980,10 @@ declare module '@strapi/types' {
       'api::app.app': ApiAppApp;
       'api::change-log.change-log': ApiChangeLogChangeLog;
       'api::index.index': ApiIndexIndex;
+      'api::main.main': ApiMainMain;
+      'api::page.page': ApiPagePage;
+      'api::pro-prothese-setting.pro-prothese-setting': ApiProProtheseSettingProProtheseSetting;
+      'api::social-media.social-media': ApiSocialMediaSocialMedia;
     }
   }
 }

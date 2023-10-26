@@ -5,5 +5,20 @@ GET http://localhost:1337/api/apps?populate=*
 GET http://localhost:1337/api/apps/1?populate=*
 
 ###
-GET http://localhost:1337/api/change-logs?populate=*?locale=en
+GET http://localhost:1337/api/apps/1?fields=name&populate=change_logs
 
+
+###
+GET http://localhost:1337/api/change-logs?populate=*
+
+###
+GET http://localhost:1337/api/change-logs?fields=version&locale=all&populate=app,features
+
+###
+GET http://localhost:1337/api/pro-prothese-setting?populate=*
+
+###
+GET http://localhost:1337/api/pro-prothese-setting?sort[0]=createdAt:asc&populate[settings][fields][0]=state&populate[settings][fields][1]=desc&populate[settings][fields][2]=title
+
+// https://www.youtube.com/watch?v=vcopLqUq594
+// https://docs.strapi.io/dev-docs/api/rest/interactive-query-builder

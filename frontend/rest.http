@@ -1,0 +1,29 @@
+###
+GET http://localhost:1337/api/main?populate[id]=*
+
+###
+GET http://localhost:1337/api/apps?populate=*
+
+
+### // nested Relations 
+GET http://localhost:1337/api/apps?fields[0]=name&[populate][change_logs][fields]=version&populate[change_logs][populate][0]=features
+
+populate[obj] == zeigt nächste obejct an
+populate[change_logs][populate][0]=features == zeigt features in change_logs an
+
+
+###
+GET http://localhost:1337/api/pro-prothese-setting?locale=all&fields[0]=locale&populate[settings][populate]=items
+
+
+
+
+
+//https://strapi.io/blog/demystifying-strapi-s-populate-and-filtering
+
+### 
+GET https://api.frederikkohler.de/api/change-logs?fields[1]=version&populate[app][fields][0]=name
+
+
+### // nested Relations 
+GET http://api.frederikkohler.de/api/apps?populate=*
