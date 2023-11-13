@@ -29,10 +29,21 @@
         "xing",
         "github",
         "phone",
-        "mail"
+        "mail",
+        "instagram"
       ],
       "required": true,
       "default": "none"
+    },
+    "component": {
+      "type": "enumeration",
+      "enum": [
+        "ButtonIconCard",
+        "ButtonLabelWithAnimatedIcon",
+        "BottonFootLink",
+        "BottonFootSocialIconLink"
+      ],
+      "required": true
     }
   }
 }

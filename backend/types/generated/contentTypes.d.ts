@@ -781,30 +781,34 @@ export interface ApiChangeLogChangeLog extends Schema.CollectionType {
   };
 }
 
-export interface ApiIndexIndex extends Schema.SingleType {
-  collectionName: 'indices';
+export interface ApiEmailEmail extends Schema.CollectionType {
+  collectionName: 'emails';
   info: {
-    singularName: 'index';
-    pluralName: 'indices';
-    displayName: 'Index';
-    description: '';
+    singularName: 'email';
+    pluralName: 'emails';
+    displayName: 'Email';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String;
+    firstname: Attribute.String;
+    lastname: Attribute.String;
+    email: Attribute.Email;
+    phone: Attribute.String;
+    subject: Attribute.String;
+    message: Attribute.RichText;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::index.index',
+      'api::email.email',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::index.index',
+      'api::email.email',
       'oneToOne',
       'admin::user'
     > &
@@ -812,24 +816,33 @@ export interface ApiIndexIndex extends Schema.SingleType {
   };
 }
 
-export interface ApiMainMain extends Schema.SingleType {
-  collectionName: 'mains';
+export interface ApiNavigationNavigation extends Schema.CollectionType {
+  collectionName: 'navigations';
   info: {
-    singularName: 'main';
-    pluralName: 'mains';
-    displayName: 'main';
+    singularName: 'navigation';
+    pluralName: 'navigations';
+    displayName: 'Navigation';
+    description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
-    navigation: Attribute.Component<'global.navigation'>;
+    name: Attribute.String;
+    links: Attribute.Component<'shared.label-link', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::main.main', 'oneToOne', 'admin::user'> &
+    createdBy: Attribute.Relation<
+      'api::navigation.navigation',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
-    updatedBy: Attribute.Relation<'api::main.main', 'oneToOne', 'admin::user'> &
+    updatedBy: Attribute.Relation<
+      'api::navigation.navigation',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
   };
 }
@@ -851,13 +864,13 @@ export interface ApiPagePage extends Schema.CollectionType {
     };
   };
   attributes: {
-    slug: Attribute.UID<'api::page.page', 'titel'> &
+    titel: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
-    titel: Attribute.String &
+    slug: Attribute.UID<'api::page.page', 'titel'> &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -868,6 +881,20 @@ export interface ApiPagePage extends Schema.CollectionType {
       'oneToMany',
       'api::social-media.social-media'
     >;
+    primaryChild: Attribute.DynamicZone<['global.section-child-primary']> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    secondaryChild: Attribute.DynamicZone<
+      ['global.section-child-primary', 'colletions.apps', 'shared.text-content']
+    > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::page.page', 'oneToOne', 'admin::user'> &
@@ -937,12 +964,13 @@ export interface ApiSocialMediaSocialMedia extends Schema.CollectionType {
     singularName: 'social-media';
     pluralName: 'social-medias';
     displayName: 'Social Media';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    socialMedia: Attribute.Component<'global.contacts', true>;
+    socialMedia: Attribute.DynamicZone<['global.contacts']>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -979,8 +1007,8 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::app.app': ApiAppApp;
       'api::change-log.change-log': ApiChangeLogChangeLog;
-      'api::index.index': ApiIndexIndex;
-      'api::main.main': ApiMainMain;
+      'api::email.email': ApiEmailEmail;
+      'api::navigation.navigation': ApiNavigationNavigation;
       'api::page.page': ApiPagePage;
       'api::pro-prothese-setting.pro-prothese-setting': ApiProProtheseSettingProProtheseSetting;
       'api::social-media.social-media': ApiSocialMediaSocialMedia;

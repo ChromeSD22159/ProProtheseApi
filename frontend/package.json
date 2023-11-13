@@ -1,29 +1,30 @@
 {
   "name": "nuxt-app",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "start": "nuxt start",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
+  "dependencies": {
+    "nodemailer": "^6.9.7",
+    "validator": "^13.11.0"
+  },
   "devDependencies": {
+    "@heroicons/vue": "^2.0.18",
     "@nuxt/devtools": "latest",
-    "@nuxtjs/apollo": "^5.0.0-alpha.7",
     "@nuxtjs/strapi": "^1.9.3",
     "@nuxtjs/tailwindcss": "^6.8.0",
-    "@rollup/plugin-graphql": "^2.0.4",
+    "markdown-it": "^13.0.2",
     "nuxt": "^3.8.0",
     "sass": "^1.69.4",
+    "typescript": "^5.2.2",
     "vue": "^3.3.6",
     "vue-router": "^4.2.5"
-  },
-  "dependencies": {
-    "@heroicons/vue": "^2.0.18",
-    "axios": "^1.5.1",
-    "nuxt-graphql-client": "^0.2.30",
-    "vue-axios": "^3.5.2"
   }
 }

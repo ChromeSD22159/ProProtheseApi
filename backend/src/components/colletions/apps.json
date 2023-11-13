@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_colletions_apps",
+  "info": {
+    "displayName": "Apps",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "titel": {
+      "type": "string"
+    },
+    "apps": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.app-preview"
+    }
+  }
+}

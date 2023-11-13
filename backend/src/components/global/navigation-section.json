@@ -7,11 +7,6 @@
   "attributes": {
     "titel": {
       "type": "string"
-    },
-    "links": {
-      "type": "component",
-      "repeatable": true,
-      "component": "shared.link"
     }
   }
 }

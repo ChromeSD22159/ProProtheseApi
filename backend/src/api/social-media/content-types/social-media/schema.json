@@ -4,7 +4,8 @@
   "info": {
     "singularName": "social-media",
     "pluralName": "social-medias",
-    "displayName": "Social Media"
+    "displayName": "Social Media",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,9 +13,10 @@
   "pluginOptions": {},
   "attributes": {
     "socialMedia": {
-      "type": "component",
-      "repeatable": true,
-      "component": "global.contacts"
+      "type": "dynamiczone",
+      "components": [
+        "global.contacts"
+      ]
     }
   }
 }

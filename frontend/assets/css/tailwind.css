@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.fk-btn {
+    @apply text-slate-400 ease-in-out duration-200
+}
+

@@ -1,21 +1,7 @@
 <template>
-  <div class="flex md:flex-row flex-col site ">
-    <HeaderNavigation  @activate-ul="activateUl"  />
-
-    <div class="w-full min-h-full relative ">
-      <!--<NuxtPage :class="{ active: showMenu }" class="min-w-full min-h-full" />-->
-
-      <ul :class="{ active: showMenu }" class="navigation min-w-full min-h-full">
-        <li class="absolute ease-in-out duration-300 m-0 p-0 min-h-screen w-full shadow-transparent shadow-none"><NuxtPage class="min-w-full min-h-full" /></li>
-        <li v-for="(link, index) in links" :key="index" class="absolute ease-in-out duration-300 rounded-xl m-0 p-6 min-h-screen w-full shadow-transparent	shadow-none">
-          <div class="background bg-opacity-10 absolute top-0 left-0 min-w-full min-h-full rounded-2xl transition-all duration-500 -p5">
-            <NuxtLink :to="link.url" @click="activateUl" class="relative top-5 left-5 text-white">  {{ link.text }} </NuxtLink>
-          </div>
-        </li>
-      </ul>
-
-    </div>
-  </div>
+    <NuxtLayout >
+        <NuxtPage />
+    </NuxtLayout>
 </template>
 
 <style lang="scss" scoped>
@@ -30,6 +16,8 @@ ul.navigation.active {
       background-color: rgb(255 255 255 / 0.2);
       backdrop-filter: blur(10px);
     }
+
+   
 }
 
 ul.navigation {
@@ -48,22 +36,42 @@ ul.navigation {
   }
 
   li:nth-child(1) {
-    z-index: 20;
+    z-index: 30;
   }
 
   li:nth-child(2) {
-    z-index: 15;
+    z-index: 25;
   }
 
   li:nth-child(3) {
-    z-index: 5;
+    z-index: 20;
   }
 
   li:nth-child(4) {
+    z-index: 15;
+  }
+
+  li:nth-child(5) {
+    z-index: 10;
+  }
+
+   li:nth-child(6) {
+    z-index: 5;
+  }
+
+   li:nth-child(7) {
     z-index: 0;
   }
 
+  .child {
+    opacity: 0;
+  }
+
   &.active {
+    .child {
+      opacity: 1;
+    }
+
     li:nth-child(1) {
       -ms-transform: TranslateY(10.5rem) scale(.90);
       -webkit-transform: TranslateY(10.5rem) scale(.90);
@@ -94,11 +102,25 @@ ul.navigation {
     }
 
     li:nth-child(4) {
-      -ms-transform: TranslateY(0px) scale(.81);
-      -webkit-transform: TranslateY(0px) scale(.81);
-      -moz-transform: TranslateY(0px) scale(.81);
-      -o-transform: TranslateY(0px) scale(.81);
-      transform: TranslateY(0px) scale(.81); // translate3d(0,45%,0)
+      -ms-transform: TranslateY(0px) scale(.80);
+      -webkit-transform: TranslateY(0px) scale(.80);
+      -moz-transform: TranslateY(0px) scale(.80);
+      -o-transform: TranslateY(0px) scale(.80);
+      transform: TranslateY(0px) scale(.80); // translate3d(0,45%,0)
+      box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.35);
+    }
+
+     li:nth-child(5) {
+      -ms-transform: TranslateY(-3.3rem) scale(.76);
+      -webkit-transform: TranslateY(-3.5rem) scale(.76);
+      -moz-transform: TranslateY(-3.5rem) scale(.76);
+      -o-transform: TranslateY(-3.5rem) scale(.76);
+      transform: TranslateY(-3.5rem) scale(.76);
+      box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.35);
+    }
+
+    li:nth-child(6) {
+      transform:  TranslateY(-6.8rem) scale(.72);
       box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.35);
     }
   }
@@ -106,47 +128,27 @@ ul.navigation {
 </style>
 
 
-<script>
-export default {
-    data() {
-        return {
-            urls: [
-                { "url":"/", "name": "Startseite" },
-                { "url":"/contact", "name": "Contact" },
-                { "url":"/apps", "name": "Pro Prothese & Country Tracking" }
-            ],
-            links: [],
-            ulActive: false,
-            showMenu: false
-        };
-    },
-    methods: {
-         generateNulllinks() {
-            this.links = this.urls.map((item, index) => ({
-                text: item.name,
-                url: item.url,
-                transformY: 0,
-                transformZ: 0,
-                zIndex: 3 - index,
-                })
-            );
-        },
-        activateUl() {
-            this.ulActive = !this.ulActive;
-            this.showMenu = !this.showMenu
-        },
-    },
-    mounted() {
-      this.generateNulllinks()
-    }
-};
+<script setup lang="ts">
+  import { ref, computed } from 'vue';
+  const StrapiUrl = useStrapiUrl()
 
-useSeoMeta({
-  title: 'Freiberuflicher Web Designer & Software Entwickler',
-  ogTitle: 'Freiberuflicher Web Designer & Software Entwickler',
-  description: 'Suchen Sie Entwickler, UX/IX-Designer oder Hilfe bei Websites? Brauchen Sie Unterstützung bei Software Projekten oder bei Ihrer Website?',
-  ogDescription: 'Suchen Sie Entwickler, UX/IX-Designer oder Hilfe bei Websites? Brauchen Sie Unterstützung bei Software Projekten oder bei Ihrer Website?',
-  ogImage: 'https://frederikkohler.de/image.png',
-  author: 'Frederik Kohler, Portfolio'
-})
+  const { data: mainNav } = await useAsyncData('mainNav', () => $fetch(StrapiUrl + '/navigations?filters[name][$eq]=HauptNavigation&populate=*'), {
+      transform: (data: any) => {
+          if (data.data) {
+              const links = data.data.map( (links: any) => links.attributes.links.flat() ).flat();
+              return links ? links : null;
+          } else {
+              return null
+          }
+
+      }
+  })
+
+  const ulActive = ref(false);
+  const showMenu = ref(false);
+
+  const activateUl = () => {
+      ulActive.value = !ulActive.value;
+      showMenu.value = !showMenu.value;
+  };
 </script>

@@ -6,15 +6,6 @@
   },
   "options": {},
   "attributes": {
-    "state": {
-      "type": "enumeration",
-      "enum": [
-        "off",
-        "on"
-      ],
-      "required": true,
-      "default": "off"
-    },
     "desc": {
       "type": "string",
       "required": true
@@ -22,6 +13,10 @@
     "title": {
       "type": "string",
       "required": true
+    },
+    "state": {
+      "type": "boolean",
+      "default": true
     }
   }
 }

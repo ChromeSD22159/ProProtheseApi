@@ -1,0 +1,7 @@
+MAILHOST=smtp.ionos.de
+MAILPORT=465
+MAILUSER=noprely@frederikkohler.de
+MAILPASS=noReply@Fr3d3rik@Kohler
+CONTACTMAIL=info@frederikkohler.de
+NOREPLY=noprely@frederikkohler.de
+STRAPI_URL=https://api.frederikkohler.de/

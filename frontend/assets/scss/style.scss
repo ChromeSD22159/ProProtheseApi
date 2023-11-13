@@ -4,18 +4,88 @@
 
 .page-enter-active,
 .page-leave-active {
-    transition: all 0.5s;
+    transition: all ease-in-out 0.4s;
 }
 
 .page-enter-from {
     opacity: 0;
-    transform: scale(0);
+    transform: translate(0, 550px) scale(0.9);
 }
 
 .page-leave-to {
+    transition-delay: 500ms;
     opacity: 0;
-    transform: scale(0);
+    transform: translate(0, 550px) scale(0.9);
 }
+
+.fk-bg-prime {
+  background-color: $prime;
+}
+
+.fk-text-highlight {
+  color: $highlight;
+}
+
+.fk-bg-highlight {
+  background-color: $highlight;
+}
+
+.fk-fill-highlight {
+  fill: $highlight;
+}
+
+.hover\:fk-text-highlight:hover {
+  color: $highlight;
+}
+
+.fk-text-accent {
+  color: $accent;
+}
+
+.fk-bg-accent {
+  background-color: $accent;
+}
+
+.fk-fill-accent {
+  fill: $accent;
+}
+
+.fk-colored-text { 
+  font-weight: bold;
+  background: -webkit-linear-gradient(142deg, $highlight 25%, $accent );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.fk-bg-dark {
+  background-color: $bg_dark;
+}
+
+.page {
+  background-color: #101317;
+
+  .line-break {
+    white-space: pre-wrap;
+  }
+}
+
+.border {
+  border-radius: 0.4rem;
+  outline: 0.2rem dashed rgba(255, 166, 0, 0.0);
+  outline-offset: 0.4rem;
+  transition: all ease-in-out .25s;
+}
+
+.border.focused {
+  outline: 0.2rem dashed rgba(255, 166, 0, 1.0);
+}
+
+input, textarea {
+  outline: none;
+}
+
+
 
 
 

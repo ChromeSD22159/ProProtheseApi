@@ -16,6 +16,14 @@
     }
   },
   "attributes": {
+    "titel": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
     "slug": {
       "pluginOptions": {
         "i18n": {
@@ -25,18 +33,34 @@
       "type": "uid",
       "targetField": "titel"
     },
-    "titel": {
+    "social_medias": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::social-media.social-media"
+    },
+    "primaryChild": {
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "type": "string"
+      "type": "dynamiczone",
+      "components": [
+        "global.section-child-primary"
+      ]
     },
-    "social_medias": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::social-media.social-media"
+    "secondaryChild": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "dynamiczone",
+      "components": [
+        "global.section-child-primary",
+        "colletions.apps",
+        "shared.text-content"
+      ]
     }
   }
 }

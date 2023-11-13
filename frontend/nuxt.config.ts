@@ -1,65 +1,29 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 
+// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
   components: true,
+  mode: 'universal', // oder 'spa'
   app: {
     pageTransition: {
-        name: 'page',
-        mode: 'out-in'
+      name: 'page',
+      mode: 'out-in'
     }
   },
   css: ["@/assets/scss/style.scss"],
   modules: [
     '@nuxtjs/tailwindcss',
     '@nuxtjs/strapi',
-    '@nuxtjs/apollo',
-    'nuxt-graphql-client'
   ],
+  plugins: ['@/plugins/markdown.ts'],
   strapi: {
-    url: 'http://api.frederikkohler.de',
-    prefix: '/api',
-    version: 'v4',
-    cookie: {},
-    cookieName: 'strapi_jwt'
+    url: process.env.STRAPI_URL,
   },
-  apollo: {
-    clients: {
-      default: {
-        httpEndpoint: 'http://localhost:1337/graphql',
-      }
-    },
+  tailwindcss: {},
+  server: {
+    host: '0.0.0.0', // Listen on all available network interfaces
+    port: 3000, // Default port
   },
-  runtimeConfig: {
-    public: {
-      'graphql-client': {
-        clients: {
-          default: {
-            host: 'https://countries.trevorblades.com/graphql',
-            token: {
-              name: 'null', 
-              value: 'null'
-            },
-          },
-          github: {
-            host: 'https://api.github.com/graphql',
-            token: {
-              name: 'Authorization: bearer TOKEN', 
-              value: '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'
-            },
-          },
-          countries: {
-            host: 'https://countries.trevorblades.com/graphql',
-            token: {
-              name: 'null', 
-              value: 'null'
-            },
-          }
-        }
-      }
-    }
-  },
-  tailwindcss: { },
   vite: {
     css: {
       preprocessorOptions: {
@@ -73,4 +37,23 @@ export default defineNuxtConfig({
       },
     },
   },
-})
+  runtimeConfig: {
+    MAILHOST: process.env.MAILHOST,
+    MAILPORT: process.env.MAILPORT,
+    MAILUSER: process.env.MAILUSER,
+    MAILPASS: process.env.MAILPASS,
+    CONTACTMAIL: process.env.CONTACTMAIL,
+    public: {
+       strapi: {
+         url: process.env.STRAPI_URL
+       },
+    }
+ },
+ hooks: {
+  'ready'(nuxt) {
+    console.log('Workspace dir:', nuxt.options.workspaceDir)
+    console.log('Modules dir:', nuxt.options.modulesDir)
+  }
+}
+
+});

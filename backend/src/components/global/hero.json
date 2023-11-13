@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_global_heroes",
+  "info": {
+    "displayName": "hero",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "titel": {
+      "type": "richtext"
+    },
+    "image": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "content": {
+      "type": "richtext"
+    },
+    "component": {
+      "type": "enumeration",
+      "enum": [
+        "hero"
+      ],
+      "required": true
+    }
+  }
+}
