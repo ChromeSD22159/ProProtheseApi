@@ -7,17 +7,17 @@
             <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                  <!-- modelValue, type, placeholder, color, fullSize -->
 
-                <FormInputText v-model="form.firstname" placeholder="Vorname *" type="text" :fullSize="false" />
+                <FormInputText v-model="form.firstname" placeholder="Vorname *" for="name" type="text" :fullSize="false" />
 
-                <FormInputText v-model="form.lastname" placeholder="Nachname *" type="text" :fullSize="false" />
+                <FormInputText v-model="form.lastname" placeholder="Nachname *" for="lastname" type="text" :fullSize="false" />
 
-                <FormInputText v-model="form.phone" placeholder="Telefon *" color="text-gray-500" type="tel" :fullSize="false" />
+                <FormInputText v-model="form.phone" placeholder="Telefon *" for="phone" color="text-gray-500" type="tel" :fullSize="false" />
 
-                <FormInputText v-model="form.email" placeholder="Email *" type="email" :fullSize="false" />
+                <FormInputText v-model="form.email" placeholder="Email *" for="email" type="email" :fullSize="false" />
 
-                <FormInputText v-model="form.subject" placeholder="Betreff *" type="text" :fullSize="true" />
+                <FormInputText v-model="form.subject" placeholder="Betreff *" for="subject" type="text" :fullSize="true" />
 
-                <FormInputTextfield rows="5" v-model="form.message" placeholder="Nachricht *" type="text"  :fullSize="true" />
+                <FormInputTextfield rows="5" v-model="form.message" placeholder="Nachricht *" for="text" type="text"  :fullSize="true" />
 
                 <FormInputCheckboxWithLink 
                     name="dinner" 
@@ -34,6 +34,8 @@
                 <div class="sm:col-span-2">
                     <FormInputMoveButton v-model="buttonPosition" @sendMailHandler="submitForm" />
                 </div>
+
+                <ButtonLabelWithAnimatedIcon title="zurück" url="/" target="_self"></ButtonLabelWithAnimatedIcon>
 
                 <Transition>
                     <ul class="sm:col-span-2">
@@ -62,6 +64,7 @@
 </template>
 
 <script setup>
+    const { create } = useStrapi()
     import validator from 'validator';
     const buttonPosition = ref(0)
     const form = ref({
@@ -85,26 +88,45 @@
         isValid(JSON.parse(JSON.stringify(form.value)));
 
         if (errorMessages.value.length === 0) {
-            await $fetch(`http://localhost:3000/api/contact`, {
-                method: 'POST',
-                body: JSON.stringify(form.value), 
-            }).then(() => {
-                error.value = false;
-                success.value = true;
-                checked.value = false;
-                resetForm()
-            }).catch((error) => {
-                error.value = true;
-                success.value = false;
-                checked.value = false;
-                buttonPosition.value = 0
-            })
+
+            try {
+                const { data } = create('emails', form.value).then(() => {
+                    error.value = false;
+                    success.value = true;
+                    checked.value = false;
+                    resetForm()
+                })
+
+                
+            } catch (e) { console.log(e) }
+
+            /*await create('emailss', form.value)
+                .then(() => {
+                    error.value = false;
+                    success.value = true;
+                    checked.value = false;
+                    resetForm()
+                }).catch((error) => {
+                    error.value = true;
+                    success.value = false;
+                    checked.value = false;
+                    buttonPosition.value = 0
+                    
+                    this.$router.push(`/error/${error.statusCode}`);
+                    
+                    throw createError({
+                        statusCode: error.statusCode,
+                        statusMessage: error.statusMessage
+                    })
+                    
+                
+                }) */
         }
     };
 
     async function isValid(body) {
         const errors = [];
-        if (checked.value == false) {
+        if (checked.value === false) {
             errors.push({
                 field: "checked",
                 error: `Datenschutz wurde nicht akzeptiert.`
@@ -137,6 +159,7 @@
         },
         setTimeout(() => {
             success.value = false;
+            checked.value = false;
         }, "5000")
     );
 

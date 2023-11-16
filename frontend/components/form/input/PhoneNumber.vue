@@ -1,6 +1,6 @@
 <template>
     <div :class="(fullSize ? 'sm:col-span-2' : 'sm:col-span-1')"> 
-        <label :for="placeholder" :class="['block', 'text-sm', 'font-semibold', 'leading-6', color ?? 'text-gray-500']">
+        <label :for="for" :class="['block', 'text-sm', 'font-semibold', 'leading-6', color ?? 'text-gray-500']">
             {{ placeholder }}
         </label>
         <div :class="[
@@ -52,6 +52,7 @@ const props = defineProps({
     modelValue: String,
     type: { type: String, default: 'text' },
     placeholder: { type: String, default: '' },
+    for: { type: String, default: '' },
     color: { type: String, default: "text-gray-500" },
     fullSize: { type: Boolean, default: false },
 });

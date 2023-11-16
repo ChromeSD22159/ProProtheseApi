@@ -8,7 +8,26 @@ export interface ColletionsApps extends Schema.Component {
   };
   attributes: {
     titel: Attribute.String;
+    subline: Attribute.String;
+    intro: Attribute.RichText;
     apps: Attribute.Component<'shared.app-preview', true>;
+    component: Attribute.Enumeration<['AppPreview']> & Attribute.Required;
+  };
+}
+
+export interface GlobalAppFeatures extends Schema.Component {
+  collectionName: 'components_global_app_features';
+  info: {
+    displayName: 'AppFeatures';
+    description: '';
+  };
+  attributes: {
+    titel: Attribute.String;
+    subtitle: Attribute.String;
+    description: Attribute.Text;
+    features: Attribute.Component<'shared.app-feature', true>;
+    appstore: Attribute.String;
+    badge: Attribute.Media;
   };
 }
 
@@ -50,6 +69,7 @@ export interface GlobalHero extends Schema.Component {
   };
   attributes: {
     titel: Attribute.RichText;
+    subline: Attribute.String;
     image: Attribute.Media;
     content: Attribute.RichText;
     component: Attribute.Enumeration<['hero']> & Attribute.Required;
@@ -98,7 +118,20 @@ export interface GlobalSectionChildPrimary extends Schema.Component {
     titel: Attribute.RichText;
     image: Attribute.Media;
     content: Attribute.RichText;
-    component: Attribute.Enumeration<['hero']> & Attribute.Required;
+    component: Attribute.Enumeration<['hero', 'Hero']> & Attribute.Required;
+    subline: Attribute.String;
+  };
+}
+
+export interface GlobalSeo extends Schema.Component {
+  collectionName: 'components_global_seos';
+  info: {
+    displayName: 'seo';
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Text;
+    author: Attribute.String;
   };
 }
 
@@ -111,6 +144,20 @@ export interface GlobalSettings extends Schema.Component {
   attributes: {
     items: Attribute.Component<'shared.toggle', true>;
     title: Attribute.String & Attribute.Required;
+  };
+}
+
+export interface SharedAppFeature extends Schema.Component {
+  collectionName: 'components_shared_app_features';
+  info: {
+    displayName: 'AppFeature';
+    description: '';
+  };
+  attributes: {
+    icon: Attribute.Media;
+    titel: Attribute.String;
+    text: Attribute.Text;
+    image: Attribute.Media;
   };
 }
 
@@ -204,6 +251,7 @@ declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'colletions.apps': ColletionsApps;
+      'global.app-features': GlobalAppFeatures;
       'global.app-preview': GlobalAppPreview;
       'global.contacts': GlobalContacts;
       'global.hero': GlobalHero;
@@ -211,7 +259,9 @@ declare module '@strapi/types' {
       'global.navigation-section': GlobalNavigationSection;
       'global.navigation': GlobalNavigation;
       'global.section-child-primary': GlobalSectionChildPrimary;
+      'global.seo': GlobalSeo;
       'global.settings': GlobalSettings;
+      'shared.app-feature': SharedAppFeature;
       'shared.app-preview': SharedAppPreview;
       'shared.feature1': SharedFeature1;
       'shared.label-link': SharedLabelLink;

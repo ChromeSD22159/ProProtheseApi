@@ -1,13 +1,13 @@
 <template>
-    <a  :href=link.href rel="noreferrer" target="_blank" class="text-gray-700 transition hover:opacity-75">
+    <a :href="link.href" :target="link.target" rel="noreferrer" class="text-gray-700 transition hover:opacity-75">
         <span class="sr-only">Facebook</span>
 
-        <IconApple v-if="iconName == 'apple'" :classList="iconClasses" />
-        <IconXing v-if="iconName == 'xing'" :classList="iconClasses"/>
-        <IconGithub v-if="iconName == 'github'" :classList="iconClasses"/>
-        <IconMail v-if="iconName == 'mail'" :classList="iconClasses"/>
-        <IconPhone v-if="iconName == 'phone'" :classList="iconClasses"/>
-        <IconInstagram v-if="iconName == 'instagram'" :classList="iconClasses"/>
+        <IconApple v-if="iconName == 'apple'" :classList="iconClasses" :class="fill" />
+        <IconXing v-if="iconName == 'xing'" :classList="iconClasses" :class="fill" />
+        <IconGithub v-if="iconName == 'github'" :classList="iconClasses" :class="fill" />
+        <IconMail v-if="iconName == 'mail'" :classList="iconClasses" :class="fill" />
+        <IconPhone v-if="iconName == 'phone'" :classList="iconClasses" :class="fill" />
+        <IconInstagram v-if="iconName == 'instagram'" :classList="iconClasses" :class="fill" />
     </a>
 </template>
 
@@ -15,6 +15,7 @@
 export default {
   props: {
     link: Object,
+    fill: String
   },
    computed: {
     iconName() {

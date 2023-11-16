@@ -18,6 +18,14 @@
     </footer>
 </template>
 
+<style lang="scss" scoped>
+    ul {
+        a {
+            color: red
+        }
+    }
+</style>
+
 <script setup lang="ts">
     const StrapiUrl = useStrapiUrl()
 

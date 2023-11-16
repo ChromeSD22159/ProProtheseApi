@@ -26,9 +26,13 @@
     "component": {
       "type": "enumeration",
       "enum": [
-        "hero"
+        "hero",
+        "Hero"
       ],
       "required": true
+    },
+    "subline": {
+      "type": "string"
     }
   }
 }

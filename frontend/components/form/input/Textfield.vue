@@ -1,6 +1,6 @@
 <template>
   <div :class="{ 'sm:col-span-2': fullSize, 'sm:col-span-1': !fullSize }"> 
-    <label :for="placeholder" :class="{ 'block': true, 'text-sm': true, 'font-semibold': true, 'leading-6': true, [color]: true }">
+    <label :for="for" :class="{ 'block': true, 'text-sm': true, 'font-semibold': true, 'leading-6': true, [color]: true }">
       {{ placeholder }}
     </label>
 
@@ -44,6 +44,7 @@ const props = defineProps({
   rows: { type: String, default: 5 },
   type: { type: String, default: 'text' },
   placeholder: { type: String, default: '' },
+  for: { type: String, default: '' },
   color: { type: String, default: 'text-gray-500' },
   fullSize: { type: Boolean, default: false },
 });

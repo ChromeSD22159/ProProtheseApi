@@ -17,8 +17,6 @@ export default defineEventHandler(async (event, response) => {
     try { 
         const body = await readBody(event);
 
-        console.log(body, response)
-
         await isValid(body);
 
         const mail = await transporter.sendMail({
@@ -30,12 +28,6 @@ export default defineEventHandler(async (event, response) => {
             <p>${body.firstname} ${body.lastname}</p>
             `
         });
-       
-        console.log(mail); // Überprüfe den gesamten Rückgabewert
-        console.log('Message send:', mail.messageId);
-
-        console.log('Message send: %s', mail.messageId);
-        console.log('Preview URL: %s', nodemailer.getTestMessageUrl(mail));
          
         return Promise.resolve('Gesendet!');
     } catch (error) {

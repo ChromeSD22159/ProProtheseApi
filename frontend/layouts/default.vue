@@ -1,7 +1,8 @@
 <template>
-<div class="site flex md:flex-row flex-col   w-screen">
-    <HeaderNavigation  @activate-ul="activateUl"  />
-
+<div class="site flex md:flex-row flex-col w-screen relative">
+     <AnimatedBackground />
+    <HeaderNavigation v-model="showMenu"  @activate-ul="activateUl"  />
+    
     <div class="w-full min-h-full relative ">
         <ul :class="{ active: showMenu }" class="navigation min-w-full min-h-full">
             <li class="absolute ease-in-out duration-300 m-0 p-0 min-h-screen w-full shadow-transparent shadow-none">

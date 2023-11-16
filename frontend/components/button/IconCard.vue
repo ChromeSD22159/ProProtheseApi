@@ -1,7 +1,6 @@
 <template>
     <div class="h-24 w-24 fk-card rounded-lg">
-        <a href="" class="h-full w-full flex flex-col justify-center content-center text-center gap-2 text-xs	">
-
+         <NuxtLink :to="link.href" :target="link.target" class="h-full w-full flex flex-col justify-center content-center text-center gap-2 text-xs">
             <IconApple v-if="iconName == 'apple'" />
             <IconXing v-if="iconName == 'xing'" />
             <IconGithub v-if="iconName == 'github'" />
@@ -9,7 +8,7 @@
             <IconPhone v-if="iconName == 'phone'" />
             <IconInstagram v-if="iconName == 'instagram'" />
             <p class="text-white text-xs text-center">{{ link.text }}</p>
-        </a>
+        </NuxtLink>
     </div>
 </template>
 

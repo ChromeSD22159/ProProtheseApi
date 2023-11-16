@@ -4,7 +4,9 @@ MAILUSER=noprely@frederikkohler.de
 MAILPASS=noReply@Fr3d3rik@Kohler
 CONTACTMAIL=info@frederikkohler.de
 NOREPLY=noprely@frederikkohler.de
-STRAPI_URL=http://192.168.0.227:1337
+STRAPI_URL_DEFAULT=http://192.168.0.227:1337
+STRAPI_URL_ZUHAUSE=http://192.168.0.227:1337
+STRAPI_URL_SABINA=http://192.168.1.107:1337
 
 # ZUHAUSE - http://192.168.0.227:1337
 # Sabina -  192.168.1.107:1337

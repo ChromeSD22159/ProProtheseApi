@@ -13,13 +13,13 @@
       class="draggable-container"
       :class="isDragging ? 'move': 'reset'"
     >
-      <button
+      <div
         :style="{ left: modelValue + 'px', transition: isDragging? 'all 50ms ease-in-out' : 'all 0.5s ease-in-out'}"
         class="round-button fk-bg-highlight"
         ref="button"
       >
         {{ isButtonRight ? "Gesendet" : "Senden" }}
-      </button>
+      </div>
     </div>
   </div>
 </template>
@@ -58,7 +58,7 @@ export default {
                 } 
 
                 if (buttonRect.left <= boardElement.left || buttonRect.right >= boardElement.right) {
-                    console.log("Outside")
+                   // Outside
                 } 
             }
         },
@@ -87,12 +87,10 @@ export default {
             }
         },
         handleButtonClick() {
-            console.log('Button wurde geklickt!');
             this.$emit('sendMailHandler');
 
             setTimeout(() => {
                 this.$emit('update:modelValue', 0);
-                console.log("butten => 0") 
                 this.isButtonRight = false 
             }, "1500");
         },
@@ -114,13 +112,13 @@ export default {
         position: relative;
         top: 0;
         left: 0;
-        height: 75px;
+        height: 90px;
     /* overflow: hidden; */
     }
 
     .round-button {
-        width: 75px;
-        height: 75px;
+        width: 90px;
+        height: 90px;
         border-radius: 50%;
         padding: 10px;
         cursor: pointer;
@@ -129,6 +127,9 @@ export default {
         color: black;
         border: none;
         transition: all 50ms ease-in-out;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     

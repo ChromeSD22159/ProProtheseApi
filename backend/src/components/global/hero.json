@@ -9,6 +9,9 @@
     "titel": {
       "type": "richtext"
     },
+    "subline": {
+      "type": "string"
+    },
     "image": {
       "type": "media",
       "multiple": true,

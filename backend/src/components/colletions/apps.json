@@ -9,10 +9,23 @@
     "titel": {
       "type": "string"
     },
+    "subline": {
+      "type": "string"
+    },
+    "intro": {
+      "type": "richtext"
+    },
     "apps": {
       "type": "component",
       "repeatable": true,
       "component": "shared.app-preview"
+    },
+    "component": {
+      "type": "enumeration",
+      "enum": [
+        "AppPreview"
+      ],
+      "required": true
     }
   }
 }

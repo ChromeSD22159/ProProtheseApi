@@ -1,5 +1,5 @@
-<template>
-    <section v-html="$markdown.render(content)" class="flex flex-col gap-3 content" />
+<template>    
+    <section v-html="$markdown.render(content)" class="flex flex-col gap-3 content" /> 
 </template>
 
 <style lang="scss" scoped>
@@ -8,8 +8,20 @@
     }
 </style>
 
-<script setup lang="ts">
-defineProps<{
-    content: String
-}>();
+<script>
+import MarkdownIt from 'markdown-it';
+
+export default {
+  props: {
+    content: {
+      type: [String, Number, Object, Array],
+      default: "",
+    },
+  },
+  methods: {
+    renderMarkdown(content) {
+      return $markdownrender(content);
+    },
+  },
+};
 </script>

@@ -1,8 +1,10 @@
 {
-  "version": "1.0",
+  "version": "1.01",
   "name": "proprothese",
   "scripts": {
     "dev": "concurrently \"npm run start:backend:dev\" \"npm run start:frontend:dev\"",
+    "dev:home": "./node_modules/.bin/cross-env STRAPI_URL=$STRAPI_URL_ZUHAUSE npm run dev",
+    "dev:sabina": "./node_modules/.bin/cross-env STRAPI_URL=$STRAPI_URL_SABINA npm run dev",
     "build": "concurrently \"npm run start:backend:build\" \"npm run start:frontend:build\"",
     "start": "concurrently  \"npm run start:backend:server\"",
     "start:backend:dev": "cd backend && npm run develop",
@@ -12,6 +14,7 @@
     "start:frontend:build": "cd frontend && npm run build"
   },
   "devDependencies": {
-    "concurrently": "^8.2.1"
+    "concurrently": "^8.2.1",
+    "cross-env": "^7.0.3"
   }
 }

@@ -6,7 +6,7 @@
 
 const populate = {
   hero: {
-    fields: ['component', 'titel', 'content']
+    fields: ['component', 'titel', 'content' ]
   },
   primaryChild: {
     populate: {
@@ -43,6 +43,7 @@ const populate = {
 module.exports = (config, { strapi }) => {
 
   return async (ctx, next) => {
+    console.log(ctx)
     ctx.query.populate = populate,
     await next();
   };

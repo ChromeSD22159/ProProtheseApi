@@ -12,7 +12,7 @@
             </div>
             
             <div v-if="site.secondary !== null" class="flex flex-col flex-1 px-10 md:px-20 py-20 animated fk-bg-dark gap-10">
-                 <div v-for="secondarySection in site.secondary" :key="secondarySection.id" class="max-w-2xl mx-auto">
+                 <div v-for="secondarySection in site.secondary" :key="secondarySection.id" class="max-w-2xl mx-auto"> 
                     <Content :content="secondarySection.content" />
                 </div>
             </div>
@@ -70,5 +70,11 @@
         ogDescription: 'Suchen Sie Entwickler, UX/IX-Designer oder Hilfe bei Websites? Brauchen Sie Unterstützung bei Software Projekten oder bei Ihrer Website?',
         ogImage: 'https://frederikkohler.de/image.png',
         author: 'Frederik Kohler, Portfolio'
+    })
+
+     useHead({
+        htmlAttrs: {
+            lang: 'de'
+        }
     })
 </script>
