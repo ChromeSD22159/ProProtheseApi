@@ -1,60 +1,60 @@
 <template>
-    <div class="page absolute ease-in-out duration-300 shadow-lg shadow-transparent" :class="{ 'lg:pl-15': !isMobileViewport, '': !isMobileViewport }">
-        <div class="grid grid-cols-1 gap-4 min-h-screen px-10 md:px-0" :class="false ? 'lg:grid-cols-1' : 'lg:grid-cols-2' ">
-            <div class="flex flex-col md:min-h-screen pt-10 md:pt-20 pb-7 px-0 lg:pl-24 lg:pr-4 gap-5 lg:overflow-scroll"> 
-               
-               <div class="flex flex-col max-w-2xl flex-1 mx-auto gap-10" ref="contentHeight">
-                    <div class="flex flex-col gap-2">
-                        <h1 class="text-xl md:text-xl xl:text-3xl line-break fk-colored-text antialiased tracking-wide font-sans"> {{ app.feature.titel }} </h1>
-                        <h2 class="text-sm md:text-md xl:text-xl line-break text-gray-500 antialiased tracking-wide font-sans"> {{ app.feature.subtitle }} </h2>
-                        <p>{{app.feature.description}}</p>
-                        
-                        <NuxtLink v-if="isNotNullOrUndefined(app.feature.badge.data) && isNotNullOrUndefined(app.feature.appstore)" :to="app.feature.appstore" >
-                             <img :src="buildImageUrl(app.feature.badge.data.attributes.url)" alt="im AppStore" style="height: 40px" />
-                        </NuxtLink>
-                       
-                    </div>
-
-                    <div 
-                        v-if="app.feature && app.feature.features && app.feature.features.length > 0" 
-                        :class="{ 'flex': true, 'flex-col': true, 'gap-5': true, 'mb-10': isMobileViewport || isContentBiggerAsViewport }"
-                    >
-                        <div v-for="(feature, index) in app.feature.features" :key="feature.id" @click="changeImage(index, feature.image )">
-                             <PageCard
-                                :content="feature"
-                                :isActive="currentCard === index"
-                                :class="'max-w-2xl flex-1 mx-auto'"
-                                :isMobil="isMobileViewport"
+   <div>
+    <NuxtLayout name="multi-row" :primarySticky="false" :secondarySticky="true">
+        <template v-slot:primary>
+             <div class="flex flex-col flex-1 mx-auto gap-10" ref="contentHeight">
+                <div class="flex flex-col gap-2">
+                    <h1 class="text-xl md:text-xl xl:text-3xl line-break fk-colored-text antialiased tracking-wide font-sans"> {{ app.feature.titel }} </h1>
+                    <h2 class="text-sm md:text-md xl:text-xl line-break text-gray-500 antialiased tracking-wide font-sans"> {{ app.feature.subtitle }} </h2>
+                    <p>{{app.feature.description}}</p>
+                    
+                    <NuxtLink v-if="isNotNullOrUndefined(app.feature.badge.data) && isNotNullOrUndefined(app.feature.appstore)" :to="app.feature.appstore" >
+                            <img :src="buildImageUrl(app.feature.badge.data.attributes.url)" 
+                                :alt="`${app.seo.title} im AppStore`" style="height: 40px" 
                             />
-                        </div>
-                       
-                    </div>
-               </div>
-
-            </div>
-
-            <div v-if="!isMobileViewport" class="flex flex-col flex-1 md:px-20 pt-20 animated fk-bg-dark gap-10 "> 
-
-                <div class="mx-auto my-auto">
-
-                    <Transition name="bounce" mode="out-in">
-                        <NuxtImg 
-                        :key="currentImage" 
-                        :src="currentImage" 
-                        class="image"
-                        alt="history screenshot vom iphone"
-                        style="max-height: 480px"
-                        />
-                    </Transition>
-                    <div class="imageCircle"></div>
+                    </NuxtLink>
+                    
                 </div>
+
+                <div 
+                    v-if="app.feature && app.feature.features && app.feature.features.length > 0" 
+                    :class="{ 'flex': true, 'flex-col': true, 'gap-5': true, 'mb-10': isMobileViewport || isContentBiggerAsViewport }"
+                >
+                    <div v-for="(feature, index) in app.feature.features" :key="feature.id" @click="changeImage(index, feature.image )">
+                            <PageCard
+                            :content="feature"
+                            :isActive="currentCard === index"
+                            :class="'max-w-2xl flex-1 mx-auto'"
+                            :isMobil="isMobileViewport"
+                        />
+                    </div>
+                    
+                </div>
+
+                <PageFoot v-if="isMobileViewport"/>
+            </div>
+        </template>
+        
+        <template v-slot:secondary v-if="!isMobileViewport">
+            <div class="h-full mx-auto my-auto flex flex-col justify-between">
+
+                <div></div>
+
+                <Transition name="bounce" mode="out-in">
+                    <NuxtImg 
+                    :key="currentImage" 
+                    :src="currentImage" 
+                    class="image"
+                    alt="history screenshot vom iphone"
+                    style="max-height: 480px"
+                    />
+                </Transition>
 
                 <PageFoot />
             </div>
-
-            <PageFoot v-if="isMobileViewport"/>
-        </div>
-    </div>
+        </template>
+    </NuxtLayout>
+</div>
 </template>
 
 
@@ -129,10 +129,10 @@ import { onBeforeMount, onMounted } from "vue";
                                         fields: ['titel', 'text'],
                                         populate: {
                                             icon: {
-                                                fields: ['name', 'alternativeText', 'url'],
+                                                fields: ['name', 'alternativeText', 'caption', 'url'],
                                             },
                                             image: {
-                                                fields: ['name', 'alternativeText', 'url'],
+                                                fields: ['name', 'alternativeText', 'caption', 'url'],
                                             }
                                         },
                                     },

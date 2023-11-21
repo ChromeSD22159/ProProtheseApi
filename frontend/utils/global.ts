@@ -1,5 +1,5 @@
-  export const isObjectNotEmpty = (obj: Object, debug: String) => {      
-      return Object.keys(obj).length !== 0;
+  export const isObjectNotEmpty = (obj: Object, debug: String) => {     
+    return isNotNullOrUndefined(obj) ? Object.keys(obj).length !== 0 : false ;
   };
 
 export const isNotNullOrUndefined = (obj: Object, debug: String) => {    

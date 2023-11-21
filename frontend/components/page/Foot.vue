@@ -1,6 +1,11 @@
 <template>
     <footer>
-        <div class="mx-auto px-4 pb-8 sm:px-6 lg:px-8">
+        <div class="mx-auto pb-8" 
+            :class="{ 
+                'px-4': !props.padding, 
+                'sm:px-6': !props.padding,
+                'lg:px-8': !props.padding,
+            }">
             <div class="pt-8 sm:flex sm:items-center sm:justify-between">
                     <ul class="flex flex-wrap justify-center gap-4 text-xs lg:justify-end">
                         <li v-for="link in links" :key="link.id">
@@ -27,6 +32,8 @@
 </style>
 
 <script setup lang="ts">
+    const props = defineProps(['padding']);
+
     const StrapiUrl = useStrapiUrl()
 
     const { data: links } = await useAsyncData('navigations', () => $fetch(StrapiUrl + '/navigations?filters[name][$eq]=FooterLinks&populate=*'), {

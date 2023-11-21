@@ -1,12 +1,12 @@
 <template>
-<div class="site flex md:flex-row flex-col w-screen relative">
-     <AnimatedBackground />
+<div :class="`layout ${layout} flex md:flex-row flex-col w-screen relative`">
+    <AnimatedBackground />
     <HeaderNavigation v-model="showMenu"  @activate-ul="activateUl"  />
     
-    <div class="w-full min-h-full relative ">
+    <div class="w-full min-h-full relative md:ml-14">
         <ul :class="{ active: showMenu }" class="navigation min-w-full min-h-full">
-            <li class="absolute ease-in-out duration-300 m-0 p-0 min-h-screen w-full shadow-transparent shadow-none">
-                <NuxtPage class="min-w-full min-h-full" />
+            <li @click="showMenu === true ? activateUl() : undefined" class="absolute ease-in-out duration-300 m-0 p-0 min-h-screen w-full shadow-transparent shadow-none">
+              <NuxtPage />
             </li>
             <li v-for="link in mainNav.slice(0, 5)" :key="link.id" class="child absolute ease-in-out duration-300 rounded-xl m-0 p-6 min-h-screen w-full shadow-transparent	shadow-none">
                 <div class="background bg-opacity-10 absolute top-0 left-0 min-w-full min-h-full rounded-2xl transition-all duration-500 -p5">
@@ -14,7 +14,6 @@
                 </div>
             </li>
         </ul>
-
     </div>
 </div>
 </template>
@@ -144,6 +143,7 @@ ul.navigation {
 
 
 <script setup lang="ts">
+  const layout = 'default'
   import { ref, computed } from 'vue';
   const StrapiUrl = useStrapiUrl()
 

@@ -1,25 +1,39 @@
 <template>
-    <div class="page absolute ease-in-out duration-300 shadow-lg shadow-transparent">
-        <div  v-if="site !== null" class="grid grid-cols-1 gap-4 min-h-screen" :class="site.secondary === null ? 'lg:grid-cols-1' : 'lg:grid-cols-2' ">
-            <div class="flex flex-col lg:min-h-screen pt-10 pb-7" > <!--  pb-7 -->
-                <div v-if="site.primary !== null">
-                    <div v-for="primarySection in site.primary" :key="primarySection.id" class="flex flex-col pt-10 "> <!--  pb-7 -->
-                        <SectionHero v-if="primarySection.component == 'hero'" :hero="primarySection" :links={} :fullSize="site.secondary === null ? true : false "/>
-                    </div>
+   <div>
+    
+        <NuxtLayout 
+            v-if="site.primary !== null && site.secondary !== null" 
+            name="multi-row" 
+            :primarySticky="false" 
+            :secondarySticky="false"
+        >
+            <template v-slot:primary> <!-- primary slot  -->
+                <div v-for="primaryData in site.primary" :key="primaryData.id" :component="primaryData.component">
+                    <component :is="loadComponent(primaryData.component)" :content="primaryData" :socialMedias="socialMedias" fullSize=""/>
                 </div>
-
-                <PageContactForm v-if="site.slug === 'kontakt'" class="mx-0 lg:mx-auto" />
-            </div>
+            </template>
             
-            <div v-if="site.secondary !== null" class="flex flex-col flex-1 px-10 md:px-20 py-20 animated fk-bg-dark gap-10">
-                 <div v-for="secondarySection in site.secondary" :key="secondarySection.id" class="max-w-2xl mx-auto"> 
-                    <Content :content="secondarySection.content" />
+            <template v-slot:secondary> <!--  secondary slot  -->
+                <div v-if="site.secondary !== null"> 
+                    <div v-for="secondaryData in site.secondary" :key="secondaryData.id" > 
+                        <component :is="loadComponent(secondaryData.component)" :content="secondaryData" :socialMedias="socialMedias" fullSize=""/>
+                    </div>
+
+                    <PageFoot padding="false"/>
                 </div>
-            </div>
-        </div>
-        
-        <PageFoot />
-    </div>
+            </template>
+        </NuxtLayout>
+
+        <NuxtLayout v-else-if="site.primary !== null && site.secondary === null" name="single-row">
+            {{ console.log("Single Row Layout") }}
+            
+            <template #primary>
+                <div v-for="primaryData in site.primary" :key="primaryData.id" :component="primaryData.component">
+                    <component :is="loadComponent(primaryData.component)" :content="primaryData" :socialMedias="{}" fullSize=""/>
+                </div>
+            </template>
+        </NuxtLayout>
+   </div>
 </template>
 
 <style lang="scss" scoped>
@@ -39,12 +53,12 @@
 
     const { findOne } = useStrapi();
     const { slug } = useRoute().params;
-    
+    const router = useRouter()
     const { data: site } = await useAsyncData('page', 
         () => 
             findOne('pages', { 
                 filters: {
-                    slug: { $eq: slug === "" ? "home" : slug }, // slug === undefined ? "home" : slug
+                    slug: { $eq: slug === "" ? "home" : slug }, 
                 }
             }), {
             transform: (data: any) => {
@@ -58,10 +72,12 @@
             }
         }
     )
-   
+
     if (site.value === null) {
-       // throw createError({ statusCode: 404, statusMessage: 'Page Not Found' })
+       router.push({ path: "/error/404" })
     }
+
+    const loadComponent = (componentName: string) => defineAsyncComponent(() => import(`@/components/section/${componentName}.vue`));
 
     useSeoMeta({
         title: 'Freiberuflicher Web Designer & Software Entwickler',

@@ -10,7 +10,7 @@
       @touchmove="dragging"
       @touchend="stopDragging"
       @touchcancel="stopDragging"
-      class="draggable-container"
+      class="flex justify-center items-center draggable-container"
       :class="isDragging ? 'move': 'reset'"
     >
       <div
@@ -112,13 +112,13 @@ export default {
         position: relative;
         top: 0;
         left: 0;
-        height: 90px;
+        height: 50px;
     /* overflow: hidden; */
     }
 
     .round-button {
-        width: 90px;
-        height: 90px;
+        width: 60px;
+        height: 60px;
         border-radius: 50%;
         padding: 10px;
         cursor: pointer;
@@ -130,6 +130,9 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
+        font-size: 12px;
+        font-weight: bold;
+        letter-spacing: 0.03em;
     }
 
     

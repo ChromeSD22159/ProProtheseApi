@@ -21,6 +21,8 @@
                      {{ findError($route.params.slug).message }}
                 </p>
 
+                <p>{{ error }}</p>
+
                 <span class="relative block px-8 py-3 backdrop-blur  hover:bg-black/70 border border-current button">
                     Go Home
                 </span>

@@ -26,8 +26,8 @@
     "component": {
       "type": "enumeration",
       "enum": [
-        "hero",
-        "Hero"
+        "Hero",
+        "TextContent"
       ],
       "required": true
     },

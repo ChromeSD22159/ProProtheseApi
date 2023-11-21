@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col relative gap-10 px-10 lg:px-0 mx-auto" :class="isObjectNotEmpty(fullSize) ? 'max-w-5xl' : 'max-w-2xl flex-1'">
+    <div class="flex flex-col relative gap-10 lg:px-0 mx-auto" :class="isObjectNotEmpty(fullSize) ? 'max-w-5xl' : 'max-w-2xl flex-1'">
         <div class="flex flex-col gap-5">
             <h2 v-if="content.titel" class="text-xl md:text-xl xl:text-3xl line-break fk-colored-text antialiased tracking-wide font-sans">{{ content.titel }}</h2> 
             <Content :content="content.intro" /> 
@@ -11,7 +11,7 @@
                     <h3 class="text-xl md:text-xl xl:text-3xl line-break fk-colored-text antialiased tracking-wide font-sans">{{ app.name }}</h3>
                     <h4 class="text-sm antialiased tracking-wide font-sans text-accent">{{ app.subline }}</h4>
                 </div>
-                <ImageWithHover :imageName="app.image.data.attributes.url" :alt="app.subline" />
+                <ImageWithHover :image="app.image" :alt="app.subline" />
             </NuxtLink>
                 <p class="antialiased">{{ app.description }}</p>
 

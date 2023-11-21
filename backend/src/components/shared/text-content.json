@@ -15,10 +15,11 @@
     "component": {
       "type": "enumeration",
       "enum": [
-        "content"
+        "Hero",
+        "TextContent"
       ],
       "required": true,
-      "default": "content"
+      "default": "TextContent"
     }
   }
 }

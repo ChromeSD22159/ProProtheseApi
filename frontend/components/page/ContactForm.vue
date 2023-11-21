@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col gap-7 px-10">
+    <div class="flex flex-col gap-7">
 
         <PageHeadline headline="Neues Projekt starten" :image="{}" />
 
@@ -35,7 +35,7 @@
                     <FormInputMoveButton v-model="buttonPosition" @sendMailHandler="submitForm" />
                 </div>
 
-                <ButtonLabelWithAnimatedIcon title="zurück" url="/" target="_self"></ButtonLabelWithAnimatedIcon>
+               <!--  <ButtonLabelWithAnimatedIcon title="zurück" url="/" target="_self"></ButtonLabelWithAnimatedIcon> -->
 
                 <Transition>
                     <ul class="sm:col-span-2">

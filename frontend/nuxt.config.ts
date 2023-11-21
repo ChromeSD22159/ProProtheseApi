@@ -1,66 +1,50 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
-import strapi from './config/strapi';
-import server from './config/server';
-import base from './config/base';
-import css from './config/css';
+import axios from 'axios'
+
+import { strapi_url } from './config/strapi';
+import { modules, app, plugins } from './config/base';
+import { css, scss, tailwindcss } from './config/css';
+import { sitemap, prerender } from './config/seo';
+import { hooks } from './config/hooks';
+import { vite } from './config/vite';
+import { runtimeConfig } from './config/runtimeConfig';
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
   components: true,
-  mode: 'universal', // oder 'spa'
+  mode: 'spa', // oder 'spa'
   ssr: false,
-  app: {
-    pageTransition: {
-      name: 'page',
-      mode: 'out-in'
-    }
-  },
-  css: css.css,
-  modules: base.modules,
-  plugins: [
-    '@/plugins/markdown.ts',
-    '@/plugins/animation'
-  ],
-  strapi: strapi.strapi_url,
-  tailwindcss: css.tailwindcss,
-  server: server.server,
-  vite: {
-    css: {
-      preprocessorOptions: {
-        scss: css.scss,
-      },
-    },
-  },
-  runtimeConfig: {
-    MAILHOST: process.env.EMAIL_SMTP_HOST,
-    MAILPORT: process.env.EMAIL_SMTP_PORT,
-    MAILUSER: process.env.EMAIL_SMTP_USER,
-    MAILPASS: process.env.EMAIL_SMTP_PASS,
-    CONTACTMAIL: process.env.EMAIL_ADDRESS_FROM,
-    public: {
-       strapi: strapi.strapi_url,
-    }
-  },
-  generate: {
-    fallback: true,
-    routes: ['/api/contact'],
-  },
-  hooks: {
-    'ready'(nuxt) {
-      console.log('🔥 Workspace dir:', nuxt.options.workspaceDir)
-     // console.log('Modules dir:', nuxt.options.modulesDir)
-      console.log('🔥 STRAPI_URL:', strapi.strapi_url.url)
-    }
-  },
+  app: app,
+  css: css,
+  modules: modules,
+  plugins: plugins,
+  strapi: strapi_url,
+  tailwindcss: tailwindcss,
+  vite: vite,
+  runtimeConfig: runtimeConfig,
+  hooks: hooks,
   site:{
     url: process.env.NUXT_PUBLIC_SITE_URL,
     cacheMaxAgeSeconds: 360, // 1 hour
   },
-  sitemap: {
+  sitemap: sitemap,
+  generate: {
+    fallback: true,
   },
   routeRules: {
     '/': { prerender: true },
     '/error/**': { index: false },
-  }
+  },
+  render: {
+    bundleRenderer: {
+      shouldPreload: (file, type) => {
+        return ['script', 'style', 'font'].includes(type);
+      },
+    },
+  },
+  nitro: {
+    prerender: prerender
+  },
 });
+

@@ -1,23 +1,21 @@
 <template>
     <div>
         <NuxtLayout name="single-row">
-            <div class="flex flex-col gap-7 px-10">
-                <PageHeadline headline="Page: 'apps'" :image="{}" />
-            </div>
+            <template #primary>
+                <component :is="loadComponent('ContactForm')"  fullSize=""/>
+            </template>
         </NuxtLayout>
     </div>
 </template>
 
+<script setup lang="ts">
 
-<style lang="scss" scoped>
-    .page {
-        padding: 2rem;
-    }
-</style>
+    const { slug } = useRoute().params;
 
+    /* load data */
+    const loadComponent = (componentName: string) => defineAsyncComponent(() => import(`@/components/page/${componentName}.vue`));
 
-<script setup>
-    useSeoMeta({
+    const loadSeoMeta = useSeoMeta({
         title: 'Freiberuflicher Web Designer & Software Entwickler',
         ogTitle: 'Freiberuflicher Web Designer & Software Entwickler',
         description: 'Suchen Sie Entwickler, UX/IX-Designer oder Hilfe bei Websites? Brauchen Sie Unterstützung bei Software Projekten oder bei Ihrer Website?',
@@ -26,7 +24,7 @@
         author: 'Frederik Kohler, Portfolio'
     })
 
-     useHead({
+    const loadHead = useHead({
         htmlAttrs: {
             lang: 'de'
         }

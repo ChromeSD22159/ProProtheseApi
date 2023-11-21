@@ -1,25 +1,28 @@
 <template>
     
-        <main class="h-screen w-full flex flex-col justify-center items-center fk-bg-prime">
+    <main class="h-screen w-full flex flex-col justify-center items-center fk-bg-prime">
 
     <ul>
         <li class="flex flex-col justify-center items-center backdrop-blur bg-white/10 p-10 rounded-xl rotate-3 card z-40">
 
-            <h1 class="text-9xl font-extrabold fk-colored-text tracking-widest"> <NuxtLayout :name="error.statusCode" /></h1>
+            <h1 class="text-9xl font-extrabold fk-colored-text tracking-widest"> {{ error.statusCode }} </h1>
             <!-- <div class="fk-bg-highlight px-2 text-sm rounded rotate-12 absolute"> -->
             <div class=" px-2 text-sm rounded rotate-12 absolute backdrop-blur bg-white/40">
                 {{ error.statusMessage }}
             </div>
-            <button class="mt-5">
-            <a
-                class="relative inline-block text-sm font-medium fk-text-highlight group active:text-orange-500 focus:outline-none focus:ring"
-                @click="handleError"
-            >
 
-                <span class="relative block px-8 py-3 backdrop-blur  hover:bg-black/70 border border-current button">
-                    Go Home
-                </span>
-            </a>
+            <code v-html=error.stack />
+
+            <button class="mt-5">
+                <a
+                    class="relative inline-block text-sm font-medium fk-text-highlight group active:text-orange-500 focus:outline-none focus:ring"
+                    @click="handleError"
+                > 
+
+                    <span class="relative block px-8 py-3 backdrop-blur  hover:bg-black/70 border border-current button">
+                        Go Home
+                    </span>
+                </a>
             </button>
 
         </li>

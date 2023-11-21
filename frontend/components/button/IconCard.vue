@@ -23,6 +23,10 @@
             color: $accent;
         }
 
+        p {
+            margin: 0;
+        }
+
         &:hover {
             background: $highlight;
 

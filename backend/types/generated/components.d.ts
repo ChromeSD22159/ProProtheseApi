@@ -118,7 +118,8 @@ export interface GlobalSectionChildPrimary extends Schema.Component {
     titel: Attribute.RichText;
     image: Attribute.Media;
     content: Attribute.RichText;
-    component: Attribute.Enumeration<['hero', 'Hero']> & Attribute.Required;
+    component: Attribute.Enumeration<['Hero', 'TextContent']> &
+      Attribute.Required;
     subline: Attribute.String;
   };
 }
@@ -228,9 +229,9 @@ export interface SharedTextContent extends Schema.Component {
   attributes: {
     titel: Attribute.String;
     content: Attribute.RichText;
-    component: Attribute.Enumeration<['content']> &
+    component: Attribute.Enumeration<['Hero', 'TextContent']> &
       Attribute.Required &
-      Attribute.DefaultTo<'content'>;
+      Attribute.DefaultTo<'TextContent'>;
   };
 }
 

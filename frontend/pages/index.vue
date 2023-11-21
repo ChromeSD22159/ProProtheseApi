@@ -1,18 +1,22 @@
 <template>
-    <div class="page absolute ease-in-out duration-300 shadow-lg shadow-transparent">
-        <div class="grid grid-cols-1 gap-4 min-h-screen" :class="site.secondary === null ? 'lg:grid-cols-1' : 'lg:grid-cols-2' ">
-            <div v-for="primaryData in site.primary" :key="primaryData.id" class="flex flex-col md:max-h-screen pt-10 md:pt-20 pb-7" :class="{ 'lg:sticky': !isMobileViewport, 'lg:top-0': !isMobileViewport }"> 
-                <component :is="loadComponent(primaryData.component)" :content="primaryData" :socialMedias="socialMedias" fullSize=""/>
-            </div>
-
-            <div v-if="site.secondary !== null" class="flex flex-col flex-1 md:px-20 pt-20 animated fk-bg-dark gap-10"> 
-                <div v-for="secondaryData in site.secondary" :key="secondaryData.id" > 
-                    <component :is="loadComponent(secondaryData.component)" :content="secondaryData" :socialMedias="socialMedias" fullSize=""/>
+    <div>
+        <NuxtLayout name="multi-row" :primarySticky="true" :secondarySticky="false">
+            <template v-slot:primary> <!-- primary slot  -->
+                <div v-for="primaryData in site.primary" :key="primaryData.id" :component=primaryData.component > 
+                    <component :is="loadComponent(primaryData.component)" :content="primaryData" :socialMedias="socialMedias" fullSize=""/>
                 </div>
+            </template>
+            
+            <template v-slot:secondary> <!--  secondary slot  -->
+                <div v-if="site.secondary !== null"> 
+                    <div v-for="secondaryData in site.secondary" :key="secondaryData.id" :component=secondaryData.component> 
+                        <component :is="loadComponent(secondaryData.component)" :content="secondaryData" :socialMedias="socialMedias" fullSize=""/>
+                    </div>
 
-                <PageFoot />
-            </div>
-        </div>
+                    <PageFoot padding="false"/>
+                </div>
+            </template>
+        </NuxtLayout>
     </div>
 </template>
 
@@ -59,7 +63,6 @@
                 },
         }), {
             transform: (data: any) => {
-
                 if (data.data && data.data.length > 0) {
                     const primary = data.data.map(  (primary: any) => primary.attributes.primaryChild.map((item: any) => item ).flat() ).flat();
                     const secondary = data.data.map(  (primary: any) => primary.attributes.secondaryChild.map((item: any) => item ).flat() ).flat();
@@ -70,7 +73,6 @@
             }
         }
     )
-
 
     /* load data */
     const loadComponent = (componentName: string) => defineAsyncComponent(() => import(`@/components/section/${componentName}.vue`));
@@ -100,6 +102,7 @@
     };
 
     onMounted(() => {
+    updateViewportWidth();
         window.addEventListener('resize', updateViewportWidth);
     });
 

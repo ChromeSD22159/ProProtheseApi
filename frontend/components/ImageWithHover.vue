@@ -1,6 +1,6 @@
 <template>
   <div class="roundedImage">
-    <img class="rounded-xl" :src="imageURL" alt="This zooms-in really well and smooth" >
+    <img class="rounded-xl" :src="imageURL" height="auto" :alt="imageAlt" >
   </div>
 </template>
 
@@ -25,10 +25,14 @@
   const StrapiMediaUrl = useStrapiMedia()
 
   const props = defineProps({
-      imageName: String
+      image: { type: Object, default: {} }
   })
 
   const imageURL = computed(() => {
-    return StrapiMediaUrl + props.imageName
+      return StrapiMediaUrl + props.image.data.attributes.formats.medium.url
+  })
+
+   const imageAlt = computed(() => {
+      return props.image.data.attributes.caption
   })
 </script>

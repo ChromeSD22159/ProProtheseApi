@@ -2,6 +2,7 @@
 @import "preset";
 @import "vars";
 
+/* Page Transition */
 .page-enter-active,
 .page-leave-active {
     transition: all ease-in-out 0.4s;
@@ -17,6 +18,26 @@
     opacity: 0;
     transform: translate(0, 550px) scale(0.9);
 }
+
+
+/* Layout Transition */
+.layout-enter-active,
+.layout-leave-active {
+    transition: all ease-in-out 0.4s;
+}
+
+.layout-enter-from {
+    opacity: 0;
+    transform: translate(0, 550px) scale(0.9);
+}
+
+.layout-leave-to {
+    transition-delay: 500ms;
+    opacity: 0;
+    transform: translate(0, 550px) scale(0.9);
+}
+
+
 
 .fk-bg-prime {
   background-color: $prime;

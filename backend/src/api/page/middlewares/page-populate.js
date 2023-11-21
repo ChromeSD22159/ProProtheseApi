@@ -12,7 +12,7 @@ const populate = {
     populate: {
       fields: ['titel'],
       image: {
-        fields: ['url', 'formats', 'content']
+        fields: ['name', 'alternativeText', 'caption', 'url', 'formats', 'content',]
       },
       apps: {
         fields: ['name', 'description', 'content']
@@ -23,13 +23,13 @@ const populate = {
     populate: {
       fields: ['titel'],
       image: {
-        fields: ['url', 'formats', 'content']
+        fields: ['name', 'alternativeText', 'caption', 'url', 'formats', 'content',]
       },
       apps: {
         fields: ['name', 'description', 'subline', 'content', 'links', 'platforms'],
         populate: {
           image: {
-            fields: ['url', 'formats', 'content']
+            fields: ['name', 'alternativeText', 'caption', 'url', 'formats', 'content',]
           },
           links: {
             fields: ['text', 'href', 'target', 'icon', 'component']
