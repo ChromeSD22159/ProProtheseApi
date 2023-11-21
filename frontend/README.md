@@ -1,18 +1,18 @@
 # Frederik Kohler NuxtJS Frontend 
 
-## Deploymend
+### Deploymend
 - .output
 - package.json
 - package-lock.json
 - .env (or custom environment variables)
 --> Run npm install on Plesk
 
-## SSH
+### SSH
 --> `cd /var/www/vhosts/frederikkohler.de/httpdocs`
 
 `scp -r /Users/frederikkohler/Desktop/Github/ProProthese/frontend/.output root@frederikkohler.de:/var/www/vhosts/frederikkohler.de/httpdocs`
 
-## Add Custom environment variables
+### Add Custom environment variables
 - MAILHOST: `smtp.domain.de`
 - MAILPORT: `<465>`
 - MAILUSER: `email@domain.de`
@@ -23,7 +23,7 @@
 - DEBUG: `true`
 -- Restart App
 
-## nginx config
+### nginx config
 - Navigate to: `cd /etc/nginx`
 - Open nginx config file: `vim nginx.conf`
 
@@ -54,7 +54,7 @@ server {
 
 - `systemctl restart nginx` OR `service nginx restart`
 
-## New Release:
+### New Release:
 #### Deploy first to the stage and after a successful test to the live.
 1. Upload the new folder `./output/publix` and if needed also `./output/server`
 2. Restart App in Plesk
