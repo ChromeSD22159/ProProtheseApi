@@ -143,8 +143,10 @@ ul.navigation {
 
 
 <script setup lang="ts">
-  const layout = 'default'
   import { ref, computed } from 'vue';
+
+  const layout = 'default'
+
   const StrapiUrl = useStrapiUrl()
 
   const { data: mainNav } = await useAsyncData('mainNav', () => $fetch(StrapiUrl + '/navigations?filters[name][$eq]=HauptNavigation&populate=*'), {
@@ -166,4 +168,5 @@ ul.navigation {
       ulActive.value = !ulActive.value;
       showMenu.value = !showMenu.value;
   };
+
 </script>

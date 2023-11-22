@@ -20,6 +20,8 @@
 - CONTACTMAIL: `email@domain.de`
 - NOREPLY: `email@domain.de`
 - STRAPI_URL: `domain.de`
+- BETTERUPTIMETOKEN: `token`
+- BETTERUPTIMEPAGES: `['id', 'id']`
 - DEBUG: `true`
 -- Restart App
 

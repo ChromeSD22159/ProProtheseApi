@@ -17,6 +17,9 @@
                         <li v-for="socialLink in socials" :key="socialLink.id">
                              <ButtonCollection :link="socialLink" />
                         </li>
+                        <li>
+                            <ButtonStatusBadge size="small"/>
+                        </li>
                     </ul>
             </div>
         </div>

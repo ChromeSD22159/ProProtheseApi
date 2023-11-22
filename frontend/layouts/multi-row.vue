@@ -9,7 +9,7 @@
           'md:max-h-screen': props.primarySticky,
          }
       ">
-        <div class="flex flex-col px-10 gap-10 mx-auto w-full max-w-2xl flex-1"> <!-- md:pl-20 md:pr-0 lg:pl-0 -->
+        <div class="flex flex-col px-10 gap-10 mx-auto w-full max-w-2xl flex-1 md:pb-7"> <!-- md:pl-20 md:pr-0 lg:pl-0 -->
           <slot name="primary" />
         </div>
       </div>

@@ -12,6 +12,7 @@ import { runtimeConfig } from './config/runtimeConfig';
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  vscode: {},
   components: true,
   mode: 'spa', // oder 'spa'
   ssr: false,
