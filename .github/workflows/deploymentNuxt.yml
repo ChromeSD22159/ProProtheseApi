@@ -3,31 +3,32 @@ name: Deployment (Nuxt)
 on:
   push:
     branches:
-    - master
+      - main
 
 jobs:
   deploy:
     name: Deployment (dev)
-    run-on: ubuntu-last
+    runs-on: ubuntu-latest  # Schreibfehler: 'ubuntu-last' sollte 'ubuntu-latest' sein
 
-    streps:
-    - uses: actions/checkout@v1
-      with:
-        node-version: 18.18.0
+    steps:  # Schreibfehler: 'streps' sollte 'steps' sein
+      - name: Checkout Repository
+        uses: actions/checkout@v1
+        with:
+          node-version: 18.18.0
 
-    - name: npm install and npm run build
-      run:
-        cd frontend
-        npm i
-        npm run build
+      - name: npm install and npm run build
+        run: |
+          cd frontend
+          npm i
+          npm run build
 
-    - name: copy files to server
-      uses: ChromeSD2215/ProProtheseApi@main
-      with:
-        HOST: ${{ secrets.HOST }}
-        PORT: ${{ secrets.PORT }}
-        USERNAME: ${{ secrets.USERNAME }}
-        PASSWORD: ${{ secrets.PASSWORD }}
-        TARTGET: ${{ secrets.TARGET }}
-        source: "./output/*"
-        strip_components: 1  
+      - name: Copy files to server
+        uses: ChromeSD2215/ProProtheseApi@main
+        with:
+          HOST: ${{ secrets.HOST }}
+          PORT: ${{ secrets.PORT }}
+          USERNAME: ${{ secrets.USERNAME }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+          TARGET: ${{ secrets.TARGET }}  # Schreibfehler: 'TARTGET' sollte 'TARGET' sein
+          source: "./output/*"
+          strip_components: 1
