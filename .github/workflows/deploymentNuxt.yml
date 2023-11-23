@@ -42,7 +42,7 @@ jobs:
         id: deployment
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages .
+          branch: gh-pages
           #folder: /home/runner/work/ProProtheseApi/ProProtheseApi/frontend/.output/public
            folder: frontend/.output/public
           token: ${{ secrets.ACCESS_TOKEN }}
