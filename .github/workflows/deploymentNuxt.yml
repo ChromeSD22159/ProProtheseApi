@@ -28,7 +28,7 @@ jobs:
           BETTERUPTIMETOKEN: ${{env.BETTERUPTIMETOKEN}}
           BETTERUPTIMEPAGES: ${{env.BETTERUPTIMEPAGES}}
           NUXT_PUBLIC_SITE_URL: ${{ env.NUXT_PUBLIC_SITE_URL }}
-        run: echo "Tell me MAILHOST ${{env.BETTERUPTIMETOKEN}}
+        run: echo "Tell me MAILHOST ${{env.BETTERUPTIMETOKEN}}"
 
       - name: Tell me env
         run: echo "Tell me MAILHOST ${{env.BETTERUPTIMETOKEN}} - ${{vars.BETTERUPTIMETOKEN}}"
