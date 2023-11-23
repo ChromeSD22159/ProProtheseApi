@@ -6,8 +6,8 @@ on:
       - main
 
 jobs:
-  deploy:
-    name: Deployment (Stage)
+  build:
+    name: Build
     runs-on: ubuntu-latest 
 
     steps: 
@@ -18,39 +18,42 @@ jobs:
 
       - name: Setup ENV's
         env:
-          MAILHOST: ${{ vars.MAILHOST }}
-          MAILPORT: ${{ vars.MAILPORT }}
-          MAILUSER: ${{ vars.MAILUSER }}
-          MAILPASS: ${{ vars.MAILPASS }}
-          CONTACTMAIL: ${{ vars.CONTACTMAIL }}
-          NOREPLY: ${{ vars.NOREPLY }}
-          STRAPI_URL: ${{ vars.STRAPI_URL }}
-          BETTERUPTIMETOKEN: ${{vars.BETTERUPTIMETOKEN}}
-          BETTERUPTIMEPAGES: ${{vars.BETTERUPTIMEPAGES}}
-          NUXT_PUBLIC_SITE_URL: ${{ vars.NUXT_PUBLIC_SITE_URL }}
+          MAILHOST: ${{ secrets.MAILHOST }}
+          MAILPORT: ${{ secrets.MAILPORT }}
+          MAILUSER: ${{ secrets.MAILUSER }}
+          MAILPASS: ${{ secrets.MAILPASS }}
+          CONTACTMAIL: ${{ secrets.CONTACTMAIL }}
+          NOREPLY: ${{ secrets.NOREPLY }}
+          STRAPI_URL: ${{ secrets.STRAPI_URL }}
+          BETTERUPTIMETOKEN: ${{ secrets.BETTERUPTIMETOKEN }}
+          BETTERUPTIMEPAGES: ${{ secrets.BETTERUPTIMEPAGES }}
+          NUXT_PUBLIC_SITE_URL: ${{ secrets.NUXT_PUBLIC_SITE_URL }}
         run: |
-            echo "Tell me ${{ vars.STRAPI_URL }} ${{vars.BETTERUPTIMETOKEN}} ${{vars.NOREPLY}}" 
-            cd frontend
-            npm i
-            npm run build
+          echo "Tell me $STRAPI_URL $BETTERUPTIMETOKEN $NOREPLY" 
+          cd frontend
+          npm i
+          npm run build
               
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
+          name: built-app
           path: ./.output/public
-  
+
   deploy:
     needs: build
-    permissions:
-      pages: write
-      id-token: write
-
-    environment:
-      name: github_pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
     runs-on: ubuntu-latest
+
     steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: built-app
+          path: ./public
+
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+        uses: JamesIves/github-pages-deploy-action@4.2.3
+        with:
+          branch: gh-pages
+          folder: ./public
+          token: ${{ secrets.GITHUB_TOKEN }}
