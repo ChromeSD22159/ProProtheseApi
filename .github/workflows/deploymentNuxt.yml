@@ -14,7 +14,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v1
         with:
-          node-version: 18.18.0
+          node-version: 18.18.2
 
       - name: npm install and npm run build
         run: |
@@ -23,7 +23,7 @@ jobs:
           npm run build
 
       - name: Copy files to server
-        uses: ChromeSD2215/ProProtheseApi@main
+        uses: ChromeSD22159/ProProtheseApi@main
         with:
           HOST: ${{ secrets.HOST }}
           PORT: ${{ secrets.PORT }}
