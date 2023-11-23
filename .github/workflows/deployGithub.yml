@@ -32,5 +32,8 @@ jobs:
             echo "Tell me $STRAPI_URL $BETTERUPTIMETOKEN $NOREPLY" 
             cd frontend
             npm i
-            npm run build --preset=github_pages
-            ls
+            npm run generate
+          - name: Debug Directory Structure
+            run: ls -R
+          - name: Debug working directory content
+            run: ls -al
