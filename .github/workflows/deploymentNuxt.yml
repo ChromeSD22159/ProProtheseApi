@@ -31,7 +31,7 @@ jobs:
           BETTERUPTIMEPAGES: ${{vars.BETTERUPTIMEPAGES}}
           NUXT_PUBLIC_SITE_URL: ${{ vars.NUXT_PUBLIC_SITE_URL }}
         run: |
-            echo "Token: ${{ secrets.ACCESS_TOKEN }}" 
+            echo "Token: ${{ secrets.ACCESS_TOKEN }} " 
             cd frontend
             npm i
             npm run generate
