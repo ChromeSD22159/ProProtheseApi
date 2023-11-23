@@ -45,8 +45,11 @@ jobs:
       - name: Print current directory
         run: pwd 
 
+       - name: Print folders
+        run: ls 
+
       - name: Print contents of .output/public
         run: |
-          cd frontend/.output/public || true
+          cd .output/public || true
           ls -al
-          pwd 
+          pwd
