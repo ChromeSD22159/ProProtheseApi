@@ -18,7 +18,7 @@ jobs:
 
       - name: Build Node
         env:
-          MAILHOST=$USERNAME
+          MAILHOST=${{USERNAME}}
           MAILPORT=${{USERNAME}}
           MAILUSER=noprely@frederikkohler.de
           MAILPASS=noReply@Fr3d3rik@Kohler
@@ -28,7 +28,7 @@ jobs:
           BETTERUPTIMETOKEN=GX6j3RWh5z33YETb4CnjTPRx
           BETTERUPTIMEPAGES=["174778"]
           NUXT_PUBLIC_SITE_URL=https://www.frederikkohler.de/
-        run: echo "${{USERNAME}} - $USERNAME"
+        run: echo "${{USERNAME}}"
         run: | 
           cd frontend
           npm i
