@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
+  build:
     name: Deployment (Stage)
     runs-on: ubuntu-latest 
 
@@ -36,11 +36,19 @@ jobs:
             npm i
             npm run generate
 
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          repository-name: ChromeSD22159/ProProtheseApi
-          branch: gh-pages
-          folder: frontend/.output/public
-          token: ${{ secrets.ACCESS_TOKEN }}
-          #https://fullstackjack.dev/articles/deploy-nuxt3-github-actions
+  deploy:
+    needs: build
+
+    permissions:
+      pages: write
+      id-token: write 
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
