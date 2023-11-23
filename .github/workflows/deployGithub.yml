@@ -28,9 +28,7 @@ jobs:
           BETTERUPTIMETOKEN: ${{vars.BETTERUPTIMETOKEN}}
           BETTERUPTIMEPAGES: ${{vars.BETTERUPTIMEPAGES}}
           NUXT_PUBLIC_SITE_URL: ${{ vars.NUXT_PUBLIC_SITE_URL }}
-
-      - name: Debug working directory content
-        run: ls -al
+          run: ls -al
 
       - name: Build Nuxt.js
         run: |
