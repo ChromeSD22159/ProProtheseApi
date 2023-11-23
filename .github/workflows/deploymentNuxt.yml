@@ -46,7 +46,7 @@ jobs:
           folder: /home/runner/work/ProProtheseApi/ProProtheseApi/frontend/.output/public #frontend/.output/public
           token: ${{ secrets.ACCESS_TOKEN }}
           clean: true
-
+ 
   print-path:
     needs: build
     runs-on: ubuntu-latest
