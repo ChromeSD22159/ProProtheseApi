@@ -42,16 +42,14 @@ jobs:
   deploy:
     needs: build
     permissions:
-      pages: write
-      id-token: write 
-
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+    # Deploy to the github_pages environment
     environment:
       name: github_pages
       url: ${{ steps.deployment.outputs.page_url }}
-
+    # Specify runner + deployment step
     runs-on: ubuntu-latest
-
     steps:
       - name: Deploy to GitHub Pages
-          id: deployment
-          uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v1
