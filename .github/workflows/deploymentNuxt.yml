@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: 18.18.2    
 
-      - name: Build Node
+      - name: Setup ENV's
         env:
           MAILHOST=${{ secrets.USERNAME }}
           MAILPORT=${{ secrets.USERNAME }}
@@ -29,7 +29,9 @@ jobs:
           BETTERUPTIMEPAGES=["174778"]
           NUXT_PUBLIC_SITE_URL=https://www.frederikkohler.de/
         run: echo "${{ secrets.USERNAME }}"
-        run: | 
-          cd frontend
-          npm i
-          npm run start:frontend:build
+
+      #- name: Build Node
+      #  run: | 
+      #    cd frontend
+      #    npm i
+      #    npm run start:frontend:build
