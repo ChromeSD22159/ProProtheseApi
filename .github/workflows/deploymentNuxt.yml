@@ -23,7 +23,6 @@ jobs:
           cd frontend
           npm i
           npm run build
-          npm run generate
 
       - name: Copy files to server
         uses: ChromeSD159/ProProtheseApi@main
