@@ -35,6 +35,7 @@ jobs:
             cd frontend
             npm i
             npm run generate
+            ls
 
   deploy:
     needs: build
