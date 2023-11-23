@@ -28,13 +28,15 @@ jobs:
           BETTERUPTIMETOKEN: ${{vars.BETTERUPTIMETOKEN}}
           BETTERUPTIMEPAGES: ${{vars.BETTERUPTIMEPAGES}}
           NUXT_PUBLIC_SITE_URL: ${{ vars.NUXT_PUBLIC_SITE_URL }}
-          run: |
-            echo "Tell me $STRAPI_URL $BETTERUPTIMETOKEN $NOREPLY" 
-            cd frontend
-            npm i
-            npm run generate --preset=github_pages
-            echo "Debug Directory Structure"
-            ls -R
-            echo "Debug working directory content"
-            ls -al
+
+      - name: Debug working directory content
+        run: ls -al
+
+      - name: Build Nuxt.js
+        run: |
+          cd frontend
+          npm i
+          npm run generate --preset=github_pages
+          echo "Debug Directory Structure"
+          ls -R
 
