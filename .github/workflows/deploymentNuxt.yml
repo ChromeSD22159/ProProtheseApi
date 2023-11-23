@@ -13,24 +13,11 @@ jobs:
     steps: 
       - name: Checkout Repository
         uses: actions/checkout@v1
-      
-      - name: Setup Node
         with:
-          node-version: v18.18.2
+          node-version: 18.18.2    
 
       - name: Build Node
-        run: |
+        run: | 
           cd frontend
           npm i
           npm run build
-
-      - name: Copy files to server
-        uses: ChromeSD159/ProProtheseApi@main
-        with:
-        HOST: ${{ secrets.HOST }}
-        PORT: ${{ secrets.PORT }}
-        USERNAME: ${{ secrets.USERNAME }}
-        PASSWORD: ${{ secrets.PASSWORD }}
-        TARGET: ${{ secrets.TARGET }}
-        source: "./output/*"
-        strip_components: 1
