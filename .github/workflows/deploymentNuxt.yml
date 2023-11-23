@@ -47,7 +47,6 @@ jobs:
 
       - name: Print contents of .output/public
         run: |
-          cd frontend
           ls -al frontend/.output/public || true
           pwd 
 
@@ -66,6 +65,11 @@ jobs:
     steps:
       - name: Print current directory
         run: pwd 
+
+      - name: Print contents of .output/public
+        run: |
+          ls -al frontend/.output/public || true
+          pwd 
 
 
 
