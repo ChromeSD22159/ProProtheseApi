@@ -36,18 +36,20 @@ jobs:
             npm i
             npm run generate
             ls -al .output/public
-            pwd
+            pwd 
 
   print-path:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Print current directory
-        run: pwd
+        run: |
+          cd frontend
+          pwd 
 
       - name: Print contents of .output/public
         run: |
-          pwd
+          cd frontend
           ls -al frontend/.output/public || true
 
   
