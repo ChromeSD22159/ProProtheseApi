@@ -36,6 +36,7 @@ jobs:
             npm i
             npm run generate
             ls -al .output/public
+            pwd
 
   print-path:
     needs: build
@@ -47,6 +48,6 @@ jobs:
       - name: Print contents of .output/public
         run: |
           pwd
-          ls -al .output/public || true
+          ls -al frontend/.output/public || true
 
   
