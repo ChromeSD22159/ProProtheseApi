@@ -42,9 +42,10 @@ jobs:
         id: deployment
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages # The branch the action should deploy to.
+          branch: gh-pages .
           folder: /home/runner/work/ProProtheseApi/ProProtheseApi/frontend/.output/public
           token: ${{ secrets.ACCESS_TOKEN }}
+          clean: true
 
   print-path:
     needs: build
@@ -52,5 +53,5 @@ jobs:
     steps:
       - name: Print current directory
         run: |
-          ls
+          cd frontend
           pwd
