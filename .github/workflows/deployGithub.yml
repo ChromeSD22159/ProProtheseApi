@@ -36,22 +36,9 @@ jobs:
             cd frontend
             npm i
             npm run generate
-        uses: actions/upload-pages-artifact@v1
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          path: .output/public
-        
-
-  deploy:
-    needs: build
-    permissions:
-      pages: write      # to deploy to Pages
-      id-token: write   # to verify the deployment originates from an appropriate source
-    # Deploy to the github_pages environment
-    environment:
-      name: github_pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    # Specify runner + deployment step
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
+          branch: gh-pages # The branch the action should deploy to.
+          folder: .output/public # The folder the action should deploy.
+          token: ${{ secrets.ACCESS_TOKEN }}
