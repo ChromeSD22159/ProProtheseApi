@@ -3,7 +3,7 @@ name: Deployment (Github Pages)
 on:
   push:
     branches:
-      - main 
+      - main
 
 jobs:
   build:
@@ -14,7 +14,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v1
         with:
-          node-version: 18.18.2  
+          node-version: 18.18.2    
 
       - name: Setup ENV's
         env:
@@ -25,9 +25,10 @@ jobs:
           CONTACTMAIL: ${{ vars.CONTACTMAIL }}
           NOREPLY: ${{ vars.NOREPLY }}
           STRAPI_URL: ${{ vars.STRAPI_URL }}
-          BETTERUPTIMETOKEN: ${{vars.BETTERUPTIMETOKEN}}
-          BETTERUPTIMEPAGES: ${{vars.BETTERUPTIMEPAGES}}
+          BETTERUPTIMETOKEN: ${{ vars.BETTERUPTIMETOKEN }}
+          BETTERUPTIMEPAGES: ${{ vars.BETTERUPTIMEPAGES }}
           NUXT_PUBLIC_SITE_URL: ${{ vars.NUXT_PUBLIC_SITE_URL }}
+<<<<<<< HEAD
           run: |
             echo "Tell me $STRAPI_URL $BETTERUPTIMETOKEN $NOREPLY" 
             cd frontend
@@ -37,3 +38,11 @@ jobs:
             run: ls -R
           - name: Debug working directory content
             run: ls -al
+=======
+        run: |
+          echo "Tell me ${{ vars.NUXT_PUBLIC_SITE_URL }}" 
+          cd frontend
+          npm i
+          npm run build --preset=github_pages
+          ls
+>>>>>>> 39f7d82ee7a133c09a2fa73aff604f697e6f1c14
