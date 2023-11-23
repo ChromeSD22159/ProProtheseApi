@@ -34,7 +34,7 @@ jobs:
         run: echo "Tell me MAILHOST ${{ env.MAILHOST }}"
 
       - name: Tell me secret
-        run: echo "Tell me MAILHOST ${{ secret.MAILHOST }}"
+        run: echo "Tell me MAILHOST ${{ secrets.MAILHOST }}"
 
       #- name: Build Node
       #  run: | 
