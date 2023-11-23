@@ -54,5 +54,5 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages # The branch the action should deploy to.
-          folder: frontend/.output/public # The folder the action should deploy.
+          folder: /home/runner/work/ProProtheseApi/frontend/.output/public
           token: ${{ secrets.ACCESS_TOKEN }}
