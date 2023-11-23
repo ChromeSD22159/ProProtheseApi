@@ -18,23 +18,17 @@ jobs:
 
       - name: Setup ENV's
         env:
-          MAILHOST: ${{ env.MAILHOST }}
-          MAILPORT: ${{ env.MAILPORT }}
-          MAILUSER: ${{ env.MAILUSER }}
-          MAILPASS: ${{ env.MAILPASS }}
-          CONTACTMAIL: ${{ env.CONTACTMAIL }}
-          NOREPLY: ${{ env.NOREPLY }}
-          STRAPI_URL: ${{ env.STRAPI_URL }}
-          BETTERUPTIMETOKEN: ${{env.BETTERUPTIMETOKEN}}
-          BETTERUPTIMEPAGES: ${{env.BETTERUPTIMEPAGES}}
-          NUXT_PUBLIC_SITE_URL: ${{ env.NUXT_PUBLIC_SITE_URL }}
-        run: echo "Tell me MAILHOST ${{env.BETTERUPTIMETOKEN}}" 
-
-      - name: Tell me env
-        run: echo "Tell me MAILHOST ${{env.BETTERUPTIMETOKEN}} - ${{vars.BETTERUPTIMETOKEN}}"
-
-      - name: Tell me secret
-        run: echo "Tell me MAILHOST ${{ secrets.MAILHOST }}"
+          MAILHOST: ${{ vars.MAILHOST }}
+          MAILPORT: ${{ vars.MAILPORT }}
+          MAILUSER: ${{ vars.MAILUSER }}
+          MAILPASS: ${{ vars.MAILPASS }}
+          CONTACTMAIL: ${{ vars.CONTACTMAIL }}
+          NOREPLY: ${{ vars.NOREPLY }}
+          STRAPI_URL: ${{ vars.STRAPI_URL }}
+          BETTERUPTIMETOKEN: ${{vars.BETTERUPTIMETOKEN}}
+          BETTERUPTIMEPAGES: ${{vars.BETTERUPTIMEPAGES}}
+          NUXT_PUBLIC_SITE_URL: ${{ vars.NUXT_PUBLIC_SITE_URL }}
+        run: echo "Tell me BETTERUPTIMETOKEN ${{vars.BETTERUPTIMETOKEN}} ${{vars.NOREPLY}}" 
 
       #- name: Build Node
       #  run: | 
