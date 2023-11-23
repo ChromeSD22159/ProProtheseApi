@@ -18,17 +18,17 @@ jobs:
 
       - name: Setup ENV's
         env:
-          MAILHOST=${{ secrets.USERNAME }}
-          MAILPORT=${{ secrets.USERNAME }}
-          MAILUSER=noprely@frederikkohler.de
-          MAILPASS=noReply@Fr3d3rik@Kohler
-          CONTACTMAIL=info@frederikkohler.de
-          NOREPLY=noprely@frederikkohler.de
-          STRAPI_URL=https://api.frederikkohler.de/
-          BETTERUPTIMETOKEN=GX6j3RWh5z33YETb4CnjTPRx
-          BETTERUPTIMEPAGES=["174778"]
-          NUXT_PUBLIC_SITE_URL=https://www.frederikkohler.de/
-        run: echo "${{ secrets.USERNAME }}"
+          MAILHOST: ${{ env.MAILHOST }}
+          MAILPORT: ${{ env.MAILPORT }}
+          MAILUSER: ${{ env.MAILUSER }}
+          MAILPASS: ${{ env.MAILPASS }}
+          CONTACTMAIL: ${{ env.CONTACTMAIL }}
+          NOREPLY: ${{ env.NOREPLY }}
+          STRAPI_URL: ${{ env.STRAPI_URL }}
+          BETTERUPTIMETOKEN: ${{ env.BETTERUPTIMETOKEN }}
+          BETTERUPTIMEPAGES: ${{ env.BETTERUPTIMEPAGES }}
+          NUXT_PUBLIC_SITE_URL: ${{ env.NUXT_PUBLIC_SITE_URL }}
+        run: echo "${{ env.MAILHOST }}"
 
       #- name: Build Node
       #  run: | 
