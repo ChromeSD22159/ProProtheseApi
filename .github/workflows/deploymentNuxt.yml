@@ -37,4 +37,33 @@ jobs:
             npm run generate
             ls -al .output/public
 
-  
+  print-path:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print current directory
+        run: pwd
+
+      - name: Print contents of .output/public
+        run: ls -al .output/public
+
+  deploy:
+    needs: build
+
+    permissions:
+      pages: write
+      id-token: write 
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: /home/runner/work/ProProtheseApi/.output/public
+          token: ${{ secrets.ACCESS_TOKEN }}
