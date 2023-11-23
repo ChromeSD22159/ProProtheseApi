@@ -17,7 +17,19 @@ jobs:
           node-version: 18.18.2    
 
       - name: Build Node
+        env:
+          MAILHOST=$USERNAME
+          MAILPORT=${{USERNAME}}
+          MAILUSER=noprely@frederikkohler.de
+          MAILPASS=noReply@Fr3d3rik@Kohler
+          CONTACTMAIL=info@frederikkohler.de
+          NOREPLY=noprely@frederikkohler.de
+          STRAPI_URL=https://api.frederikkohler.de/
+          BETTERUPTIMETOKEN=GX6j3RWh5z33YETb4CnjTPRx
+          BETTERUPTIMEPAGES=["174778"]
+          NUXT_PUBLIC_SITE_URL=https://www.frederikkohler.de/
+        run: echo "${{USERNAME}} - $USERNAME"
         run: | 
           cd frontend
           npm i
-          npm run build
+          npm run start:frontend:build
