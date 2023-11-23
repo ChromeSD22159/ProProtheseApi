@@ -33,9 +33,11 @@ jobs:
             cd frontend
             npm i
             npm run generate
-            echo "Debug Directory Structure"
-            ls -R
-            echo "Work Directory Structure"
-             run: ls -al
 
-            #https://fullstackjack.dev/articles/deploy-nuxt3-github-actions
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: .output/public # The folder the action should deploy.
+          token: ${{ secrets.ACCESS_TOKEN }}
+          #https://fullstackjack.dev/articles/deploy-nuxt3-github-actions
