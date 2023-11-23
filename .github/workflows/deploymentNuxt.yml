@@ -42,5 +42,5 @@ jobs:
           repository-name: ChromeSD22159/ProProtheseApi
           branch: gh-pages
           folder: frontend/.output/public
-          #token: ${{ secrets.ACCESS_TOKEN }}
+          token: ${{ secrets.ACCESS_TOKEN }}
           #https://fullstackjack.dev/articles/deploy-nuxt3-github-actions
