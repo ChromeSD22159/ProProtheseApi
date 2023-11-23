@@ -32,7 +32,16 @@ jobs:
             echo "Tell me ${{ vars.STRAPI_URL }} ${{vars.BETTERUPTIMETOKEN}} ${{vars.NOREPLY}}" 
             cd frontend
             npm i
-            npm run build
+            npm run generate
 
+        - name: Build Nuxt.js
+          run: |
+            echo "Debug Directory Structure"
+            ls -R
+
+        - name: Build Nuxt.js
+          run: |
+            echo "Work Directory Structure"
+             run: ls -al
 
             #https://fullstackjack.dev/articles/deploy-nuxt3-github-actions
