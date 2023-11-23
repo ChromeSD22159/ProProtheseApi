@@ -1,4 +1,4 @@
-name: Deployment (Nuxt)
+name: Deployment (Stage)
 
 on:
   push:
@@ -7,28 +7,31 @@ on:
 
 jobs:
   deploy:
-    name: Deployment (dev)
+    name: Deployment (Stage)
     runs-on: ubuntu-latest 
 
     steps: 
       - name: Checkout Repository
         uses: actions/checkout@v1
+      
+      - name: Setup Node
         with:
-          node-version: 18.18.2
+          node-version: v18.18.2
 
-      - name: npm install and npm run build
+      - name: Build Node
         run: |
           cd frontend
           npm i
           npm run build
+          npm run generate
 
       - name: Copy files to server
-        uses: ChromeSD22159/ProProtheseApi@main
+        uses: ChromeSD159/ProProtheseApi@main
         with:
-          HOST: ${{ secrets.HOST }}
-          PORT: ${{ secrets.PORT }}
-          USERNAME: ${{ secrets.USERNAME }}
-          PASSWORD: ${{ secrets.PASSWORD }}
-          TARGET: ${{ secrets.TARGET }} 
-          source: "./output/*"
-          strip_components: 1
+        HOST: ${{ secrets.HOST }}
+        PORT: ${{ secrets.PORT }}
+        USERNAME: ${{ secrets.USERNAME }}
+        PASSWORD: ${{ secrets.PASSWORD }}
+        TARGET: ${{ secrets.TARGET }}
+        source: "./output/*"
+        strip_components: 1
