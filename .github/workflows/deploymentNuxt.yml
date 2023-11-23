@@ -43,9 +43,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print current directory
-        run: pwd 
-
-      - name: Print contents of .output/public
         run: |
-          ls -al
+          ls
           pwd
