@@ -28,10 +28,8 @@ jobs:
           BETTERUPTIMETOKEN: ${{vars.BETTERUPTIMETOKEN}}
           BETTERUPTIMEPAGES: ${{vars.BETTERUPTIMEPAGES}}
           NUXT_PUBLIC_SITE_URL: ${{ vars.NUXT_PUBLIC_SITE_URL }}
-        run: echo "Tell me ${{ vars.STRAPI_URL }} BETTERUPTIMETOKEN ${{vars.BETTERUPTIMETOKEN}} ${{vars.NOREPLY}}" 
-
-      - name: Build Node
-        run: | 
-          cd frontend
-          npm i
-          npm run build
+        run: |
+            echo "Tell me ${{ vars.STRAPI_URL }} ${{vars.BETTERUPTIMETOKEN}} ${{vars.NOREPLY}}" 
+            cd frontend
+            npm i
+            npm run build
